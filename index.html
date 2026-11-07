@@ -1,0 +1,1102 @@
+<!doctype html>
+<html lang="es" data-brand="snowflake" data-theme="snowflake">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="snowflake-source" content="cortex-agent-authored">
+  <meta name="reveal-print-mode" content="Append ?print-pdf and print with backgrounds enabled">
+  <title>Expedition 2026: qué ha cambiado</title>
+  <script type="application/json" id="snowflake-report-metadata">
+{
+  "assumptions": [
+    "Scope limited to GA and public preview capabilities stated in Snowflake public sources as of November 5, 2026 (post-event).",
+    "Customer-facing claims and statuses were checked against public Snowflake sources.",
+    "Business Context area covers only public preview items (Horizon Context, AI Data Package, Agents for Shared Data, Agentic Marketplace Discovery); Business Ontology and Cortex Sense are coming soon and stay in notes.",
+    "Real-time slide shows September 2026 GA capabilities, labeled as available now rather than new."
+  ],
+  "audience": "Customer technical teams: data engineers, platform owners, and AI builders",
+  "brand_system": "snowflake-template-2026",
+  "generated": "2026-11-05",
+  "intent": "Customer-facing technical recap of Snowflake Expedition 2026 GA and public preview announcements",
+  "notes_confidentiality": {
+    "basis": "Notes contain only public availability caveats; no competitive comparisons or internal roadmap dates.",
+    "classification": "customer-shareable"
+  },
+  "schema_version": 2,
+  "sources": [
+    "https://www.snowflake.com/en/blog/expedition-26/",
+    "https://www.snowflake.com/en/expedition/ams/agenda/",
+    "https://www.snowflake.com/en/news/press-releases/expedition-2026-coco-cowork/",
+    "https://www.snowflake.com/en/news/press-releases/expedition-2026-business-ontology-ai-gateway/",
+    "https://www.snowflake.com/en/blog/snowflake-coco-cloud-agents-automations/",
+    "https://www.snowflake.com/en/blog/autonomous-data-engineering-ai-agents-apps/",
+    "https://www.snowflake.com/en/blog/ai-agents-governance-ai-security-cost-control/",
+    "https://www.snowflake.com/en/blog/real-time-analytics-snowflake/",
+    "https://www.snowflake.com/en/blog/snowpipe-streaming-elastic-channels-ga/",
+    "https://www.snowflake.com/en/blog/engineering/zero-copy-interactive-analytics/",
+    "https://docs.snowflake.com/en/release-notes/2026/other/2026-11-03-cortex-ai-gateway-ga",
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-ai-gateway/cost-management",
+    "https://docs.snowflake.com/en/user-guide/cortex-code/cortex-code-automations",
+    "https://docs.snowflake.com/en/release-notes/2026/other/2026-10-12-horizon-context-preview",
+    "https://www.snowflake.com/en/blog/ai-agents-governed-data-business-context/",
+    "https://docs.snowflake.com/en/release-notes/2026/other/2026-10-13-cortex-agent-sdk-preview",
+    "https://docs.snowflake.com/en/release-notes/2026/other/2026-10-05-cortex-agents-code-execution-tool-ga",
+    "https://docs.snowflake.com/en/release-notes/2026/other/2026-10-28-cortex-agents-coding-agent-thinking-effort-stage-mounts",
+    "https://docs.snowflake.com/en/release-notes/2026/other/2026-10-28-ai-parse-document-agentic-mode-preview",
+    "https://docs.snowflake.com/en/release-notes/2026/other/2026-11-03-coco-excel-sheets-preview",
+    "https://docs.snowflake.com/en/release-notes/new-features",
+    "https://www.snowflake.com/en/news/press-releases/expedition-2026-autonomous-data-engineering/",
+    "https://www.snowflake.com/en/blog/snowflake-coco-microsoft-excel-google-sheets/",
+    "https://docs.snowflake.com/en/release-notes/2026/other/2026-11-04-iceberg-backups",
+    "https://www.snowflake.com/en/news/press-releases/expedition-2026-free-global-training-access/",
+    "https://docs.snowflake.com/en/release-notes/2026/other/2026-09-01-snowflake-app-runtime-ga"
+  ],
+  "verification": {
+    "console_probe_seen": true,
+    "evidence_sha256": "f209a86cb8849d01e28e9124f93465f09757805fe269999058a17b20b133a781",
+    "floored": [],
+    "min_clearance_px": 20.81,
+    "pdf_pages_uniform": true,
+    "schema_version": 1,
+    "slide_ids": [
+      "title",
+      "route",
+      "coco",
+      "cowork",
+      "ai-platform",
+      "agent-builders",
+      "data-engineering",
+      "context",
+      "lakehouse",
+      "real-time",
+      "apps",
+      "governance",
+      "keynotes",
+      "training",
+      "sources"
+    ],
+    "viewport_px": 877
+  }
+}
+</script>
+  <!-- online-required: slides load Reveal.js from cdn.jsdelivr.net; network access is mandatory -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@6.0.1/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@6.0.1/dist/theme/white.css" id="theme">
+  <style data-source="styles/components.css">
+* { box-sizing: border-box; }
+
+/* Every component selector is scoped under .reveal on purpose. The Reveal theme
+   styles bare element selectors (.reveal p, .reveal ul, .reveal table th), which
+   outrank an unscoped class and would silently discard the values below. */
+
+.reveal {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 26px;
+  color: var(--role-ink);
+}
+
+.reveal .slides { text-align: left; }
+.reveal .slides section {
+  height: 100%;
+  padding: var(--slide-pad-top) var(--slide-pad-x) var(--slide-pad-bottom);
+  background: var(--role-canvas);
+}
+
+/* Reveal's print stylesheet forces padding:0 and display:block with !important,
+   so the PDF path must restate the geometry at equal weight. */
+html.reveal-print .reveal .slides section {
+  padding: var(--slide-pad-top) var(--slide-pad-x) var(--slide-pad-bottom) !important;
+}
+
+.reveal .controls { color: var(--role-accent); }
+.reveal .progress { color: var(--role-accent); height: 4px; }
+.reveal .progress span { background: var(--role-accent); }
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal p { margin-top: 0; }
+
+.reveal h1,
+.reveal h2,
+.reveal h3 {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  text-transform: none;
+  letter-spacing: -0.025em;
+}
+
+/* h1 keeps a deliberately narrow measure: the title slide is a lockup, and a
+   short two-line title is the intended look. Content and statement headings do
+   the opposite and defer to their container, because a `ch` cap is a
+   font-relative guess with no knowledge of how much room the slide has. At 42px
+   Arial Bold 1ch is ~23px, so the former 25ch granted ~580px inside a 1080px
+   header — over half the available width, wrapping 17 of 20 measured titles to two
+   lines when 14 of them fitted on one. The container owns the measure now:
+   `.slide-header` caps at 1080px and `.statement-lockup` at 980px. Do not
+   reintroduce a ch cap here; widen or narrow the container instead. `overflow-wrap`
+   is reset to `normal` because Reveal's base stylesheet sets `break-word`
+   globally: at 64px uppercase, a single word wider than 12ch (e.g. "BENCHMARKING")
+   has no legal break point inside the box, so `break-word` splits the word itself.
+   `normal` lets that one word exceed 12ch on its own line instead — the
+   980px `.title-lockup` has ample room and no `overflow:hidden`, so nothing
+   clips. Never let a title word split mid-word; a wider single line is the
+   correct fallback, not a hyphenated fragment. */
+.reveal h1 { max-width: 12ch; margin-bottom: 22px; font-size: 64px; line-height: 1.02; font-weight: 700; color: var(--role-ink-strong); overflow-wrap: normal; word-break: keep-all; }
+.reveal h2 { max-width: 100%; margin: 0; color: var(--role-ink-strong); font-size: 42px; line-height: 1.08; font-weight: 700; }
+.reveal h3 { margin-bottom: 10px; color: var(--role-ink-strong); font-size: 24px; line-height: 1.15; font-weight: 700; }
+.reveal p { line-height: 1.32; }
+.reveal strong { color: var(--role-ink-strong); font-weight: 700; }
+.reveal a { color: var(--role-label); }
+
+/* Colorstack helper: stacks a contrasting color on a word inside a title (2026
+   brand "colorstack"). Defaults to the accent; the cover theme overrides it to
+   white so the word "Snowflake" reads on the Snowflake Blue field. */
+.reveal .stack-hi { color: var(--role-accent); }
+
+.reveal .slide-header { max-width: 1080px; margin-bottom: 40px; }
+.reveal .slide-header::after { content: ""; display: block; width: 74px; height: 5px; margin-top: 20px; background: var(--role-accent); }
+.reveal .kicker,
+.reveal .eyebrow { margin: 0 0 12px; color: var(--role-label); font-size: 15px; font-weight: 900; letter-spacing: 0.16em; text-transform: uppercase; }
+.reveal .lede { max-width: 35ch; color: var(--role-ink); font-size: 28px; line-height: 1.3; }
+.reveal .slide-body { width: 100%; }
+
+.reveal .slides section.dark-slide { background: var(--role-canvas-feature); }
+.reveal .dark-slide .lede { opacity: 0.8; }
+
+/* Center through an inner wrapper so Reveal keeps full control of section display. */
+.reveal .slide-center { display: flex; align-items: center; height: 100%; }
+.reveal .title-lockup,
+.reveal .statement-lockup { position: relative; z-index: 1; max-width: 980px; }
+.reveal .title-meta { margin: 40px 0 0; color: var(--role-accent-ink); font-size: 18px; font-weight: 700; }
+.reveal .statement-slide h2 { max-width: 100%; font-size: 58px; }
+.reveal .dot-field { position: absolute; inset: 0 0 0 auto; width: 42%; opacity: 0.38; background-image: radial-gradient(circle, var(--role-accent) 2px, transparent 2.5px); background-size: 28px 28px; -webkit-mask-image: linear-gradient(90deg, transparent, var(--sf-midnight)); mask-image: linear-gradient(90deg, transparent, var(--sf-midnight)); }
+
+.reveal .split-layout { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: 64px; align-items: start; }
+.reveal .diamond-list { display: block; margin: 30px 0 0; padding: 0; list-style: none; }
+.reveal .diamond-list li { position: relative; margin: 0 0 18px; padding-left: 32px; font-size: 25px; line-height: 1.3; }
+.reveal .diamond-list li::before { content: ""; position: absolute; top: 0.45em; left: 4px; width: 11px; height: 11px; background: var(--role-accent); transform: rotate(45deg); }
+
+.reveal .callout { min-height: 260px; padding: 34px; background: var(--role-surface-accent); border: 1px solid var(--role-border); border-radius: 16px; }
+.reveal .callout-label { margin: 22px 0 12px; color: var(--role-label); font-size: 14px; font-weight: 900; letter-spacing: 0.12em; text-transform: uppercase; }
+.reveal .callout > p:last-child { margin-bottom: 0; color: var(--role-ink-strong); font-size: 25px; font-weight: 700; line-height: 1.28; }
+.reveal .callout--warning { background: color-mix(in srgb, var(--role-warning) 12%, var(--role-canvas)); border-color: color-mix(in srgb, var(--role-warning) 35%, var(--role-canvas)); }
+
+.reveal .card-grid { display: grid; gap: 24px; }
+.reveal .card-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.reveal .card-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.reveal .card-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.reveal .card { min-height: 270px; padding: 32px 28px; background: var(--role-surface); border: 1px solid var(--role-border); border-radius: 14px; box-shadow: 0 12px 28px var(--role-shadow); }
+.reveal .card p { margin-bottom: 0; color: var(--role-ink); font-size: 20px; line-height: 1.35; }
+.reveal .icon { width: 34px; height: 34px; margin-bottom: 24px; fill: none; stroke: var(--role-accent); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.reveal .icon--large { width: 54px; height: 54px; margin-bottom: 0; }
+
+.reveal .architecture-panel { height: 440px; }
+.reveal .architecture-svg { width: 100%; height: 100%; }
+.reveal .svg-region { fill: var(--role-surface-sunken); stroke: var(--role-border); stroke-width: 2; }
+.reveal .svg-platform { fill: var(--role-surface-accent); stroke: var(--role-label); stroke-width: 2; stroke-dasharray: 8 6; }
+.reveal .svg-node { fill: var(--role-surface); stroke: var(--role-border); stroke-width: 2; }
+.reveal .svg-node--primary { fill: var(--role-surface); stroke: var(--role-accent); stroke-width: 3; }
+.reveal .svg-region-label,
+.reveal .svg-platform-label { fill: var(--role-label); font-size: 18px; font-weight: 900; letter-spacing: 1.5px; text-transform: uppercase; }
+.reveal .svg-node-title { fill: var(--role-ink-strong); font-size: 19px; font-weight: 900; }
+.reveal .svg-node-copy { fill: var(--role-ink); font-size: 14px; }
+.reveal .svg-connector { fill: none; stroke: var(--role-label); stroke-width: 3; }
+.reveal .svg-arrowhead { fill: var(--role-label); }
+
+/* Legend swatches for architecture SVGs that use semantic color.
+   Unused by the stock template (its architecture slide is structural only), but
+   declared here so an author can adopt the contract without new CSS.
+   See references/architecture-guide.md for the color/legend parity rule. */
+.reveal .svg-legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; }
+.reveal .svg-legend span { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--role-ink-subtle); }
+.reveal .svg-swatch { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+
+.reveal .process { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 34px; }
+.reveal .process-step { position: relative; min-height: 250px; padding: 76px 4px 0; border-top: 2px solid var(--role-border); }
+.reveal .process-step:not(:last-child)::after { content: ""; position: absolute; top: -2px; right: -34px; width: 34px; border-top: 2px solid var(--role-border); }
+.reveal .step-number { position: absolute; top: -25px; left: 0; display: grid; width: 50px; height: 50px; place-items: center; color: var(--role-on-accent); background: var(--role-label); border: 5px solid var(--role-surface); border-radius: 50%; font-size: 18px; font-weight: 900; }
+.reveal .process-step p { color: var(--role-ink); font-size: 19px; line-height: 1.35; }
+
+.reveal .metric-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+.reveal .metric { padding: 30px; border-top: 5px solid var(--role-accent); background: var(--role-surface-sunken); }
+.reveal .metric-value { margin: 0 0 4px; color: var(--role-ink-strong); font-size: 48px; font-weight: 900; overflow-wrap: break-word; }
+.reveal .metric-label { margin: 0; color: var(--role-ink); font-size: 19px; }
+
+.reveal .comparison { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 34px; align-items: start; }
+.reveal .comparison-column { padding: 28px; background: var(--role-surface-sunken); border-top: 5px solid var(--role-border); border-radius: 0 0 12px 12px; }
+.reveal .comparison-column--target { background: var(--role-surface-accent); border-top-color: var(--role-accent); }
+.reveal .comparison-label { margin: 0 0 16px; color: var(--role-label); font-size: 14px; font-weight: 900; letter-spacing: 0.12em; text-transform: uppercase; }
+.reveal .comparison-column ul { display: block; margin: 0; padding-left: 22px; }
+.reveal .comparison-column li { margin-bottom: 10px; font-size: 20px; line-height: 1.35; }
+.reveal .comparison-column li:last-child { margin-bottom: 0; }
+
+.reveal .deck-table { width: 100%; margin: 0; border-collapse: collapse; font-size: 20px; }
+.reveal .deck-table caption { margin-bottom: 14px; color: var(--role-label); font-size: 14px; font-weight: 900; letter-spacing: 0.12em; text-align: left; text-transform: uppercase; }
+.reveal .deck-table th,
+.reveal .deck-table td { padding: 13px 16px; text-align: left; border-bottom: 1px solid var(--role-border); }
+.reveal .deck-table thead th { color: var(--role-ink-strong); background: var(--role-surface-sunken); border-bottom: 2px solid var(--role-accent); font-weight: 900; }
+.reveal .deck-table tbody tr:last-child td { border-bottom: 0; }
+.reveal .deck-table td { color: var(--role-ink); }
+
+.reveal .slide-footer { position: absolute; right: var(--slide-pad-x); bottom: 20px; left: var(--slide-pad-x); display: flex; justify-content: space-between; padding-top: 9px; color: var(--role-label); border-top: 1px solid var(--role-border); font-size: 13px; letter-spacing: 0.03em; }
+.reveal .slide-footer span:first-child { color: var(--role-label); font-weight: 900; }
+.reveal .source-line { margin: 18px 0 0; color: var(--role-label); font-size: 13px; }
+
+/* Code component. A code slide follows the narrative slide it belongs to and
+   carries the verbatim SQL/YAML that slide summarizes, so the type scale is tuned
+   for reference reading rather than back-of-room legibility. */
+.reveal .code-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; align-items: start; }
+.reveal .code-figure { margin: 0; }
+.reveal .code-caption { margin: 0 0 10px; color: var(--role-label); font-size: 14px; font-weight: 900; letter-spacing: 0.12em; text-transform: uppercase; }
+.reveal .code-block { margin: 0; padding: 20px 22px; background: var(--role-code-bg); border: 1px solid var(--role-border); border-left: 4px solid var(--role-accent); border-radius: 10px; }
+.reveal .code-block code { display: block; color: var(--role-code-ink); font-family: "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace; font-size: 15px; line-height: 1.5; white-space: pre; tab-size: 2; }
+/* Blocks past ~15 lines use the dense scale. This is reference code the audience
+   reads on a handout or by zooming, so a smaller scale is preferred over trimming
+   the snippet or shortening the slide title. Never go below 8px.
+   Dense blocks also tighten their box, which reclaims ~25px on a 20-line snippet
+   under a two-line title without shrinking the type any further. */
+.reveal .code-block--tight { padding: 12px 16px; }
+.reveal .code-block--tight code { font-size: 11.5px; line-height: 1.38; }
+.reveal [data-slide-type="code"] .code-caption { margin-bottom: 7px; }
+.reveal [data-slide-type="code"] .source-line { margin-top: 12px; }
+.reveal .code-comment { color: var(--role-ink-subtle); font-style: italic; }
+.reveal .code-note { margin: 16px 0 0; color: var(--role-ink); font-size: 18px; line-height: 1.35; }
+
+/* Inline literals inside prose keep the monospace signal without a boxed look.
+   Scoped to the two places inline code is actually used - a broader selector such
+   as `.slide-body code` also matches code inside .code-block and silently
+   overrides its font-size, which pushes long blocks through the footer. */
+.reveal .diamond-list code,
+.reveal .lede code { padding: 1px 5px; color: var(--role-label); background: var(--role-surface-accent); border-radius: 4px; font-family: "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace; font-size: 0.82em; }
+
+/* Divider slides reuse the statement lockup but carry a large part numeral. */
+.reveal .part-number { margin: 0 0 18px; color: var(--role-accent-ink); font-size: 20px; font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase; }
+
+/* A five-step process fits the canvas only with tighter gutters. */
+.reveal .process--5 { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 22px; }
+.reveal .process--5 .process-step { min-height: 220px; }
+.reveal .process--5 .process-step:not(:last-child)::after { right: -22px; width: 22px; }
+.reveal .process--5 .process-step p { font-size: 17px; }
+
+/* A two-line architecture title costs ~45px, which the 440px panel cannot absorb.
+   This variant pairs with a 400-unit viewBox so the diagram still clears the footer. */
+.reveal .architecture-panel--compact { height: 396px; }
+
+/* Compact reference tables sit beside a code block or inside a split column. */
+.reveal .deck-table--compact { font-size: 18px; }
+.reveal .deck-table--compact th,
+.reveal .deck-table--compact td { padding: 10px 14px; }
+
+.reveal .card-grid--4 .card { min-height: 300px; padding: 26px 22px; }
+.reveal .card-grid--4 .card p { font-size: 18px; }
+.reveal .card-grid--4 .card h3 { font-size: 20px; }
+.reveal .card-grid--4 .icon { margin-bottom: 18px; }
+
+/* Deliberately no viewport media query. Reveal scales the fixed 1280x720 canvas
+   to fit the window, so internal geometry is always 1280px wide and content never
+   reflows. A `@media (max-width: ...)` rule keyed to viewport width therefore fires
+   on window size alone and collapses multi-column layouts that still have their full
+   1280px to work with, overflowing slides and doubling PDF page heights. Reveal's
+   print stylesheet evaluates the same query, so it breaks export too. */
+
+@media print {
+  .reveal .slides section { background: var(--role-canvas); print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .reveal .slides section.dark-slide { background: var(--role-canvas-feature); }
+  .reveal .card,
+  .reveal .metric,
+  .reveal .process-step,
+  .reveal .comparison-column,
+  .reveal .callout,
+  .reveal .deck-table { break-inside: avoid; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* ── Ported from create-reveal-slides workshop decks. Available in every theme;
+   colored entirely through role tokens. See references/theme-system.md. ── */
+
+/* Two-column panel pair. .panel is a bordered region with a left accent rule;
+   the modifier states whether it is the recommended or rejected practice. */
+.reveal .panel-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: stretch; }
+.reveal .panel-row--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.reveal .panel { height: 100%; padding: 20px 22px; background: var(--role-surface); border: 1px solid var(--role-border); border-left: 3px solid var(--role-label); border-radius: 8px; }
+.reveal .panel-label { margin: 0 0 12px; color: var(--role-ink-subtle); font-size: 14px; font-weight: 900; letter-spacing: 0.13em; text-transform: uppercase; }
+.reveal .panel ul { display: block; margin: 0; padding-left: 20px; }
+.reveal .panel li { margin-bottom: 9px; color: var(--role-ink); font-size: 19px; line-height: 1.36; }
+.reveal .panel li:last-child { margin-bottom: 0; }
+.reveal .panel--positive { border-left-color: var(--role-positive); }
+.reveal .panel--positive .panel-label { color: var(--role-positive); }
+.reveal .panel--negative { border-left-color: var(--role-negative); }
+.reveal .panel--negative .panel-label { color: var(--role-negative); }
+
+/* Copyable prompt block. The workshop audience runs these verbatim, so the
+   block is reference text with a copy affordance rather than back-of-room copy. */
+.reveal .prompt { margin: 0 0 16px; padding: 16px 20px 18px; background: var(--role-code-bg); border: 1px solid var(--role-border-accent); border-left: 3px solid var(--role-accent); border-radius: 8px; }
+.reveal .prompt-label { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 0 0 10px; color: var(--role-accent); font-size: 13px; font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; }
+.reveal .prompt pre { margin: 0; padding: 0; width: 100%; background: none; box-shadow: none; color: var(--role-code-ink); font-family: "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace; font-size: 14px; line-height: 1.45; white-space: pre-wrap; word-break: break-word; }
+.reveal .copy-btn { flex: 0 0 auto; padding: 5px 14px; color: var(--role-accent); background: color-mix(in srgb, var(--role-accent) 12%, transparent); border: 1px solid var(--role-border-accent); border-radius: 4px; font-family: inherit; font-size: 12px; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; }
+.reveal .copy-btn:hover { color: var(--role-ink-strong); background: color-mix(in srgb, var(--role-accent) 28%, transparent); }
+.reveal .copy-btn[data-state="done"] { color: var(--role-positive); border-color: var(--role-positive); background: color-mix(in srgb, var(--role-positive) 22%, transparent); }
+
+/* Compact strip callouts. Distinct from the existing .callout card: this is a
+   one-to-three-line aside, not a 260px panel. */
+.reveal .note-strip { margin: 12px 0; padding: 12px 18px; background: var(--role-surface); border-left: 3px solid var(--role-ink-subtle); border-radius: 6px; color: var(--role-ink); font-size: 19px; line-height: 1.4; }
+.reveal .note-strip--highlight { background: var(--role-surface-accent); border-left-color: var(--role-accent); }
+.reveal .note-strip--warning { background: color-mix(in srgb, var(--role-warning) 10%, transparent); border-left-color: var(--role-warning); }
+.reveal .note-strip--note { background: color-mix(in srgb, var(--role-note) 8%, transparent); border-left-color: var(--role-note); }
+
+/* Feature box for a named capability (a skill, a plugin, a product surface). */
+.reveal .feature-box { margin-top: 12px; padding: 16px 20px 18px; background: color-mix(in srgb, var(--role-emphasis) 14%, transparent); border: 1px solid color-mix(in srgb, var(--role-emphasis) 42%, transparent); border-left: 3px solid var(--role-emphasis); border-radius: 8px; color: var(--role-ink); font-size: 19px; line-height: 1.4; }
+.reveal .feature-label { margin: 0 0 8px; color: var(--role-emphasis); font-size: 13px; font-weight: 900; letter-spacing: 0.13em; text-transform: uppercase; }
+
+/* Framing box: paraphrased context or a stated ask. Never a verbatim customer
+   quote — the skill forbids inventing attributed statements. */
+.reveal .framing-box { margin: 0 0 18px; padding: 18px 22px; background: color-mix(in srgb, var(--role-warning) 8%, transparent); border: 1px solid color-mix(in srgb, var(--role-warning) 28%, transparent); border-left: 3px solid var(--role-warning); border-radius: 8px; }
+.reveal .framing-label { margin: 0 0 10px; color: var(--role-warning); font-size: 13px; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+.reveal .framing-box p { margin: 0; color: var(--role-ink-strong); font-size: 21px; line-height: 1.42; }
+
+/* Dense reference table. .deck-table is the presentation-scale table; this is
+   the higher-density variant for a reference or appendix slide. */
+.reveal .grid-table { width: 100%; margin: 16px 0 0; border-collapse: collapse; font-size: 17px; }
+.reveal .grid-table th { padding: 10px 14px; color: var(--role-label); border-bottom: 2px solid var(--role-border-accent); font-size: 14px; font-weight: 900; letter-spacing: 0.09em; text-align: left; text-transform: uppercase; }
+.reveal .grid-table td { padding: 10px 14px; color: var(--role-ink); border-bottom: 1px solid var(--role-border); line-height: 1.34; text-align: left; vertical-align: top; }
+.reveal .grid-table tbody tr:nth-child(odd) { background: var(--role-surface-sunken); }
+.reveal .grid-table td:first-child { color: var(--role-ink-strong); }
+.reveal .grid-table--numbered td:first-child { width: 2em; color: var(--role-accent); font-weight: 900; text-align: center; }
+
+/* Surface badge: marks an exception (a feature limited to some surfaces). */
+.reveal .badge { display: inline-block; margin-left: 4px; padding: 1px 6px; color: var(--role-warning); background: color-mix(in srgb, var(--role-warning) 13%, transparent); border: 1px solid color-mix(in srgb, var(--role-warning) 36%, transparent); border-radius: 3px; font-family: "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace; font-size: 12px; font-weight: 900; letter-spacing: 0.08em; white-space: nowrap; vertical-align: 0.08em; }
+.reveal .badge-group { white-space: nowrap; }
+/* Named badge-legend, not .legend: `legend` is reserved by the architecture
+   color-parity contract, which looks for <g class="legend"> inside an SVG. */
+.reveal .badge-legend { margin-top: 12px; color: var(--role-ink-subtle); font-size: 14px; line-height: 1.5; }
+
+/* Pill row: an agenda strip on a cover slide, or a tag list. */
+.reveal .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.reveal .pill { padding: 7px 16px; color: var(--role-ink-subtle); background: var(--role-surface); border: 1px solid var(--role-border); border-radius: 20px; font-size: 14px; letter-spacing: 0.05em; }
+
+/* Attribution lockup under a cover title. */
+.reveal .byline { margin: 10px 0 26px; padding-left: 14px; border-left: 3px solid var(--role-accent); color: var(--role-ink); font-size: 17px; line-height: 1.6; }
+
+.reveal .component-showcase--compact .feature-box { margin-top: 6px; padding: 10px 16px 12px; }
+.reveal .component-showcase--compact .note-strip { margin: 7px 0; padding: 8px 14px; font-size: 17px; line-height: 1.25; }
+.reveal .component-showcase--compact .grid-table { margin-top: 9px; font-size: 15px; }
+.reveal .component-showcase--compact .grid-table th,
+.reveal .component-showcase--compact .grid-table td { padding: 6px 10px; }
+.reveal .component-showcase--compact .pill-row { margin-top: 7px; }
+.reveal .component-showcase--compact .byline { margin: 6px 0 0; font-size: 15px; line-height: 1.35; }
+
+/* Small trailing note: what comes next, or a closing question. */
+.reveal .next-up { margin-top: 14px; color: var(--role-ink-subtle); font-size: 15px; }
+.reveal .closing-question { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--role-border); color: var(--role-accent-ink); font-size: 20px; text-align: center; }
+
+/* Opt-in auto-fit. The script writes a font-size on .slide-body; this rule only
+   documents the hook so a reader can find it from the CSS side. */
+.reveal section[data-autofit] .slide-body { transform-origin: top left; }
+
+@media print {
+  .reveal .copy-btn { display: none; }
+}
+
+/* Expedition recap: denser three-item area list */
+.reveal .area-list { margin-top: 8px; }
+.reveal .area-list li { font-size: 21px; line-height: 1.32; margin-bottom: 22px; color: var(--role-ink); }
+.reveal .area-list li strong { color: var(--role-ink-strong); }
+.reveal .area-list .badge { font-size: 12px; }
+.reveal .split-layout .note-strip { margin-top: 18px; font-size: 18px; }
+.reveal .callout--compact { min-height: 0; padding: 22px 26px; }
+.reveal .callout--compact .callout-label { margin: 10px 0 8px; }
+.reveal .callout--compact > p:last-child { font-size: 21px; line-height: 1.3; }
+.reveal .source-list { margin: 8px 0 0; padding-left: 22px; }
+.reveal .source-list li { margin: 0 0 10px; font-size: 20px; line-height: 1.3; }
+.reveal .source-list a { color: var(--role-label); text-decoration: underline; }
+
+</style>
+  <style data-source="styles/theme-snowflake.css">
+/* Snowflake light theme — Snowflake Template 2026 palette. Palette tokens are the
+   canonical 2026 brand values; the --role-* block maps them onto the semantic
+   roles that styles/components.css consumes. See references/theme-system.md. */
+:root {
+  /* Palette — canonical Snowflake Template 2026 values. Every theme must declare
+     the five core values so the validator's missing_core check stays satisfied
+     (C9): Snowflake Blue, Mid-Blue, Midnight, Medium Gray, White. */
+  --sf-blue: #29B5E8;
+  --sf-mid-blue: #11567F;
+  --sf-midnight: #000000;
+  --sf-medium-gray: #5B5B5B;
+  --sf-star-blue: #75CDD7;
+  --sf-orange: #FF9F36;
+  --sf-purple: #7D44CF;
+  --sf-rose: #D45B90;
+  --sf-white: #FFFFFF;
+  --sf-off-white: #F5F9FC;
+  --sf-pale-blue: #EAF7FC;
+  --sf-line: #D8E4EA;
+  --sf-shadow: rgba(0, 0, 0, 0.08);
+
+  /* Geometry — identical in every theme (C12). */
+  --slide-pad-x: 86px;
+  --slide-pad-top: 68px;
+  --slide-pad-bottom: 54px;
+
+  /* Roles — mapped to the 2026 palette: Midnight titles, Medium Gray body,
+     Mid-Blue sections and dark panels. */
+  --role-canvas: var(--sf-white);
+  --role-canvas-feature: var(--sf-mid-blue);
+  --role-surface: var(--sf-white);
+  --role-surface-sunken: var(--sf-off-white);
+  --role-surface-accent: var(--sf-pale-blue);
+  --role-border: var(--sf-line);
+  --role-border-accent: var(--sf-blue);
+  --role-ink: var(--sf-medium-gray);
+  --role-ink-strong: var(--sf-midnight);
+  --role-ink-subtle: var(--sf-medium-gray);
+  --role-label: var(--sf-mid-blue);
+  --role-accent: var(--sf-blue);
+  --role-accent-ink: var(--sf-star-blue);
+  --role-on-accent: var(--sf-white);
+  --role-code-bg: var(--sf-off-white);
+  --role-code-ink: var(--sf-midnight);
+  --role-shadow: var(--sf-shadow);
+  --role-positive: var(--sf-star-blue);
+  --role-negative: var(--sf-orange);
+  --role-warning: var(--sf-orange);
+  --role-note: var(--sf-star-blue);
+  --role-emphasis: var(--sf-purple);
+}
+
+/* Feature/divider slides sit on Mid-Blue with inverted ink (white text on
+   Mid-Blue, per the 2026 contrast rules). */
+.reveal .slides section.dark-slide { --role-ink: var(--sf-white); --role-ink-strong: var(--sf-white); --role-ink-subtle: rgba(255, 255, 255, 0.72); --role-label: var(--sf-blue); --role-border: rgba(255, 255, 255, 0.24); --role-surface: rgba(255, 255, 255, 0.06); }
+
+/* 2026 casing: cover and chapter/section titles are ALL CAPS; content slide
+   titles stay in the Title Case they are authored in. Applied per-slide here so
+   the shared h1/h2 default (text-transform:none) leaves content titles alone. */
+.reveal .title-slide h1,
+.reveal .divider-slide h2 { text-transform: uppercase; }
+
+/* Colorstack cover: the deck cover is full-bleed Snowflake Blue with a black
+   title and the word "Snowflake" stacked in white (.stack-hi). Black text on
+   Snowflake Blue meets the 2026 contrast rule; the eyebrow and meta invert to
+   Midnight so they read on the blue field. */
+.reveal .slides section.title-slide {
+  background: var(--sf-blue);
+  --role-ink: var(--sf-midnight);
+  --role-ink-strong: var(--sf-midnight);
+  --role-ink-subtle: var(--sf-midnight);
+  --role-label: var(--sf-midnight);
+  --role-accent-ink: var(--sf-midnight);
+  --role-border: rgba(0, 0, 0, 0.18);
+}
+.reveal .title-slide .stack-hi { color: var(--sf-white); }
+
+@media print {
+  .reveal .slides section.title-slide { background: var(--sf-blue); print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+}
+
+</style>
+  <style data-source="styles/expedition-visuals.css">
+/* Expedition's visual vocabulary: routes, workspaces, and controlled paths.
+   Type ladder: labels 14/700/.12em; body 14 caption, 16 body-sm, 18 body; card titles 20 primary, 18 dense. */
+
+/* Status badges: GA is solid, Public Preview is outlined, both above 4.5:1 contrast. */
+.reveal .badge { font-family: inherit; font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 2px 7px; border-radius: 4px; vertical-align: .15em; }
+.reveal .badge--ga { color: var(--sf-white); background: var(--sf-mid-blue); border: 1px solid var(--sf-mid-blue); }
+.reveal .badge--preview { color: var(--sf-purple); background: var(--sf-white); border: 1px solid var(--sf-purple); }
+
+/* Footer and source lines stay legible in a printed PDF. */
+.reveal .slide-footer, .reveal .source-line { font-size: 14px; }
+.reveal .source-line b { color: var(--role-ink-strong); }
+
+/* Dark statement slide: labels and footer go white so they clear contrast on mid-blue. */
+.reveal .slides section.dark-slide { --role-label: var(--sf-white); }
+
+/* Cover: the route is drawn on entry; base styles stay final so print shows it complete. */
+.reveal .title-slide .title-lockup { position: relative; z-index: 2; }
+.reveal .title-slide .lede { max-width: 30ch; }
+.reveal .expedition-route { position: absolute; right: 90px; top: 100px; width: 430px; height: 475px; color: var(--role-ink-strong); opacity: .75; }
+.reveal .expedition-route svg { width: 100%; height: 100%; overflow: visible; }
+.reveal .expedition-route circle { fill: var(--role-surface); stroke: currentColor; stroke-width: 3px; }
+.reveal .route-stop { position: absolute; font-size: 14px; font-weight: 700; letter-spacing: .12em; white-space: nowrap; }
+.reveal .route-stop--1 { left: 38px; top: 438px; }
+.reveal .route-stop--2 { left: 262px; top: 288px; }
+.reveal .route-stop--3 { left: 92px; top: 143px; }
+.reveal .route-stop--4 { right: -6px; top: 14px; }
+
+/* Wayfinding chip that ties every area slide back to the cover route. */
+.reveal .slide-header .kicker { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.reveal .visual-slide .slide-header, .reveal #route .slide-header { max-width: none; }
+.reveal .route-chip { display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px; border: 1px solid var(--role-border-accent); border-radius: 999px; color: var(--role-label); font-size: 13px; font-weight: 700; letter-spacing: .12em; }
+.reveal .route-chip b { color: var(--role-ink-strong); }
+.reveal .route-chip i { font-style: normal; font-weight: 400; letter-spacing: .04em; color: var(--role-ink); }
+.reveal .slide-header h2 { text-wrap: balance; }
+
+/* The route agenda: four stops on a single track. */
+.reveal .route-map { position: relative; }
+.reveal .route-track { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; height: 22px; margin-bottom: 18px; }
+.reveal .route-track:before { content: ''; position: absolute; top: 9px; left: 9px; right: 250px; height: 3px; background: var(--role-accent); transform-origin: left; }
+.reveal .route-track i { position: relative; width: 16px; height: 16px; border: 3px solid var(--role-accent); border-radius: 50%; background: var(--role-canvas); }
+.reveal .route-track i:last-child { background: var(--role-accent); }
+.reveal .route-stops { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; }
+.reveal .route-stops article { min-height: 290px; padding: 24px 22px 20px; border-top: 4px solid var(--role-accent); background: var(--role-surface-sunken); }
+.reveal .route-stops article:first-child { background: var(--role-surface-accent); }
+.reveal .route-stops b { display: block; color: var(--role-label); font-size: 34px; line-height: 1; }
+.reveal .route-stops h3 { margin: 14px 0 10px; font-size: 28px; }
+.reveal .route-stops p { margin: 0 0 18px; font-size: 18px; line-height: 1.3; color: var(--role-ink); }
+.reveal .route-stops ul { margin: 0; padding: 0; list-style: none; }
+.reveal .route-stops li { margin: 0 0 8px; padding-left: 12px; border-left: 2px solid var(--role-border-accent); font-size: 16px; font-weight: 700; color: var(--role-ink-strong); }
+.reveal .route-note { margin: 22px 0 0; color: var(--role-label); font-size: 16px; }
+
+/* Shared area-slide frame. */
+.reveal .visual-slide .slide-header { margin-bottom: 22px; }
+.reveal .visual-slide .visual-body { height: 310px; }
+.reveal .visual-slide .visual-bottom { display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; margin-top: 22px; }
+.reveal .visual-bottom p { margin: 0; padding-top: 10px; border-top: 1px solid var(--role-border); color: var(--role-ink); font-size: 16px; line-height: 1.3; }
+.reveal .visual-bottom p:first-child { color: #1F2D3A; font-weight: 600; }
+.reveal .visual-bottom span, .reveal .visual-label { display: block; margin-bottom: 6px; color: var(--role-label); font-size: 13px; font-weight: 700; letter-spacing: .12em; }
+.reveal .visual-bottom p:first-child span { color: var(--sf-mid-blue); }
+.reveal .visual-slide article p { margin: 8px 0 0; font-size: 16px; line-height: 1.3; color: var(--role-ink); }
+.reveal .visual-slide article strong { display: inline-block; font-size: 20px; line-height: 1.15; color: var(--role-ink-strong); }
+.reveal .visual-slide article .badge { margin-left: 9px; }
+
+/* CoCo: delegation, recurrence, and reusable skill, built step by step. */
+.reveal .journey-flow { display: flex; align-items: center; height: 100%; gap: 14px; }
+.reveal .journey-node { position: relative; box-sizing: border-box; width: 31%; min-height: 222px; padding: 24px 22px; border: 1px solid var(--role-border); border-radius: 10px; background: var(--role-surface); }
+.reveal .journey-node:first-child { background: var(--role-surface-accent); border-color: var(--role-border-accent); }
+.reveal .journey-label { display: block; margin-bottom: 26px; color: var(--role-label); font-size: 14px; letter-spacing: .12em; font-weight: 700; }
+.reveal .flow-arrow { color: var(--role-accent); font-size: 32px; font-weight: 700; }
+
+/* CoWork: the screen makes the analytic artifact tangible; labels stay outside it. */
+.reveal .workbench { display: grid; grid-template-columns: 1.15fr 1fr; gap: 25px; height: 100%; align-items: stretch; }
+.reveal .workbench-screen { overflow: hidden; border: 2px solid var(--role-label); border-radius: 11px; background: var(--role-surface); }
+.reveal .workbench-top { display: flex; justify-content: space-between; padding: 12px 18px; background: var(--role-label); color: var(--role-on-accent); font-size: 13px; font-weight: 700; letter-spacing: .12em; }
+.reveal .workbench-content { display: flex; flex-direction: column; gap: 22px; padding: 24px; }
+.reveal .workbench-graph { display: flex; align-items: end; justify-content: space-between; height: 98px; border-bottom: 1px solid var(--role-border); }
+.reveal .workbench-graph i { display: block; width: 15%; background: var(--role-accent); height: 42%; transform-origin: bottom; }
+.reveal .workbench-graph i:nth-child(2) { height: 78%; }.reveal .workbench-graph i:nth-child(3) { height: 53%; }
+.reveal .workbench-graph i:nth-child(4) { height: 92%; background: var(--sf-mid-blue); }.reveal .workbench-graph i:nth-child(5) { height: 68%; }
+.reveal .workbench-insight { padding: 10px 15px; background: var(--role-surface-accent); border-left: 3px solid var(--role-accent); }
+.reveal .workbench-insight span { display: block; margin-bottom: 3px; font-size: 13px; font-weight: 700; letter-spacing: .12em; color: var(--role-label); }
+.reveal .workbench-insight strong { font-size: 18px; color: var(--role-ink-strong); }
+.reveal .workbench-rail { display: grid; gap: 9px; }
+.reveal .workbench-rail article { padding: 9px 17px; border-left: 3px solid var(--role-border-accent); background: var(--role-surface-sunken); }
+.reveal .workbench-rail article p { margin-top: 4px; font-size: 15px; }
+.reveal .workbench-rail article strong { font-size: 18px; }
+
+/* AI platform: one dominant corpus tile with two adjacent specialized outputs. */
+.reveal .ai-constellation { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; height: 100%; }
+.reveal .ai-primary { position: relative; padding: 21px 27px; border-radius: 14px; background: var(--role-label); color: var(--role-on-accent); }
+.reveal .ai-primary .visual-label, .reveal .ai-primary strong, .reveal .ai-primary p { color: var(--role-on-accent) !important; }
+.reveal .ai-primary-copy { position: absolute; bottom: 19px; left: 27px; right: 27px; }
+.reveal .ai-primary-copy p { max-width: 470px; }
+.reveal .document-stack { position: absolute; top: 72px; left: 31px; width: 160px; height: 115px; }
+.reveal .document-stack span { display: block; position: absolute; width: 100px; height: 95px; background: var(--role-surface); border: 2px solid var(--role-accent); border-radius: 5px; transform: rotate(-11deg); }
+.reveal .document-stack span:nth-child(2) { left: 27px; transform: rotate(2deg); }.reveal .document-stack span:nth-child(3) { left: 52px; transform: rotate(11deg); }
+.reveal .ai-secondary { display: grid; gap: 14px; }.reveal .ai-secondary article { padding: 14px 22px; background: var(--role-surface-accent); border-radius: 10px; }
+
+/* Data engineering: stage nodes sit directly over the cards they label. */
+.reveal .pipeline-track { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; justify-items: center; position: relative; margin: 0 0 14px; color: var(--role-label); font-size: 14px; font-weight: 700; letter-spacing: .12em; }
+.reveal .pipeline-track:before { content: ''; position: absolute; top: 43px; left: 16.67%; right: 16.67%; height: 3px; background: var(--role-accent); transform-origin: left; }
+.reveal .pipeline-track span { position: relative; padding: 0 10px 34px; }
+.reveal .pipeline-track span:after { content: ''; position: absolute; bottom: 0; left: 50%; width: 14px; height: 14px; transform: translateX(-50%); border: 3px solid var(--role-accent); border-radius: 50%; background: var(--role-canvas); }
+.reveal .pipeline-steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
+.reveal .pipeline-steps article { min-height: 190px; padding: 22px; background: var(--role-surface-sunken); border-top: 4px solid var(--role-accent); }
+
+/* Lakehouse: a connected estate above, the three capabilities below it. */
+.reveal .lakehouse-visual { display: flex; flex-direction: column; gap: 16px; height: 100%; }
+.reveal .lakehouse-diagram { display: grid; grid-template-columns: 1fr 1.25fr 1fr; gap: 34px; align-items: center; height: 168px; }
+.reveal .lakehouse-sources, .reveal .lakehouse-outcomes { display: flex; flex-direction: column; justify-content: center; gap: 8px; }
+.reveal .lakehouse-sources span, .reveal .lakehouse-outcomes span { position: relative; padding: 8px 16px; border: 1px solid var(--role-border); border-radius: 6px; color: var(--role-label); font-size: 15px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; background: var(--role-surface); }
+.reveal .lakehouse-sources span:after, .reveal .lakehouse-outcomes span:before { content: ''; position: absolute; top: 50%; width: 34px; height: 2px; background: var(--role-accent); }
+.reveal .lakehouse-sources span:after { right: -35px; }
+.reveal .lakehouse-outcomes span:before { left: -35px; }
+.reveal .lakehouse-center { display: flex; flex-direction: column; justify-content: center; height: 168px; box-sizing: border-box; padding: 12px 24px; border: 2px solid var(--role-accent); border-radius: 50%; text-align: center; background: var(--role-surface-accent); }
+.reveal .lakehouse-center .visual-label { margin-bottom: 6px; }
+.reveal .lakehouse-center strong { font-size: 22px; line-height: 1.2; }
+.reveal .lakehouse-features { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
+.reveal .lakehouse-features article { padding: 2px 0 0 14px; border-left: 3px solid var(--role-accent); }
+.reveal .lakehouse-features article strong { font-size: 18px; }
+.reveal .lakehouse-features article p { margin-top: 5px; font-size: 15px; line-height: 1.28; }
+
+/* Real-time: a directional signal line; the two GA stages are filled. */
+.reveal .realtime-line { display: flex; align-items: center; padding-top: 34px; }
+.reveal .realtime-line span { padding: 16px 22px; border-radius: 6px; border: 1px solid var(--role-border-accent); background: var(--role-surface); font-size: 17px; color: var(--role-label); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.reveal .realtime-line span.is-ga { background: var(--sf-mid-blue); border-color: var(--sf-mid-blue); color: var(--sf-white); }
+.reveal .realtime-line i { position: relative; flex: 1; height: 3px; margin: 0 14px 0 12px; background: var(--role-accent); transform-origin: left; }
+.reveal .realtime-line i:after { content: ''; position: absolute; right: -10px; top: -5px; border: 6.5px solid transparent; border-left: 9px solid var(--role-accent); border-right: 0; }
+.reveal .realtime-features { display: grid; grid-template-columns: repeat(2,1fr); gap: 34px; margin-top: 38px; }
+.reveal .realtime-features article { border-top: 3px solid var(--role-accent); padding: 14px 0; }
+
+/* Apps: mirror operational data in, serve results back out through apps and agents. */
+.reveal .apps-visual { display: grid; grid-template-columns: 1fr 64px 1fr 64px 1fr; gap: 6px; align-items: stretch; row-gap: 22px; }
+.reveal .apps-lane { display: flex; flex-direction: column; gap: 8px; min-height: 128px; box-sizing: border-box; padding: 18px 22px; background: var(--role-surface-sunken); border-radius: 9px; }
+.reveal .apps-lane--blue { background: var(--role-surface-accent); }
+.reveal .apps-lane--dark { background: var(--sf-mid-blue); }
+.reveal .apps-lane--dark span, .reveal .apps-lane--dark strong, .reveal .apps-lane--dark small { color: var(--sf-white) !important; }
+.reveal .apps-lane span { font-size: 13px; font-weight: 700; letter-spacing: .12em; color: var(--role-label); }
+.reveal .apps-lane strong { font-size: 30px; line-height: 1.1; color: var(--role-ink-strong); }
+.reveal .apps-lane small { font-size: 16px; color: var(--role-ink); }
+.reveal .apps-join { display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--role-accent); }
+.reveal .apps-join b { font-size: 32px; line-height: 1; }
+.reveal .apps-join small { margin-top: 4px; color: var(--role-label); font-size: 12px; font-weight: 700; letter-spacing: .12em; }
+.reveal .apps-features { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; column-gap: 6px; }
+.reveal .apps-features article:nth-child(2) { grid-column: 3; }.reveal .apps-features article:nth-child(3) { grid-column: 5; }
+.reveal .apps-features article .badge { display: table; margin: 7px 0 0; }
+.reveal .apps-features article { padding-top: 12px; border-top: 3px solid var(--role-accent); }
+.reveal .apps-features article strong { font-size: 18px; }
+.reveal .apps-features article p { font-size: 15px; }
+
+/* Governance: controls arranged around the agent action, connected by a bridge. */
+.reveal .governance-visual { display: grid; grid-template-columns: 1fr 1.45fr; column-gap: 40px; align-items: center; height: 100%; }
+.reveal .governance-core { display: flex; flex-direction: column; justify-content: center; min-height: 255px; padding: 30px; background: var(--role-label); border-radius: 12px; color: var(--role-on-accent); }
+.reveal .governance-core .visual-label, .reveal .governance-core strong, .reveal .governance-core p { color: var(--role-on-accent); }
+.reveal .governance-core strong { font-size: 30px; line-height: 1.15; }
+.reveal .governance-core p { margin-top: 14px; font-size: 16px; }
+.reveal .governance-ring { position: relative; display: grid; gap: 12px; }
+.reveal .governance-ring:before { content: ''; position: absolute; left: -40px; top: 50%; width: 40px; height: 2px; background: var(--role-accent); }
+.reveal .governance-ring article { padding: 10px 18px; border-left: 4px solid var(--role-accent); background: var(--role-surface-sunken); }
+.reveal .governance-ring .ring-label { display: block; margin-bottom: 3px; color: var(--role-label); font-size: 13px; font-weight: 700; letter-spacing: .12em; }
+.reveal .governance-ring article strong { font-size: 18px; }
+.reveal .governance-ring article p { font-size: 15px; margin-top: 3px; line-height: 1.25; }
+.reveal .governance-ring article .badge { display: inline-block; width: auto; margin-left: 8px; }
+
+.reveal .governance-core .visual-label .badge--ga { margin-left: 8px; color: var(--sf-mid-blue); background: var(--sf-white); border-color: var(--sf-white); letter-spacing: .06em; }
+.reveal .governance-core strong { font-size: 28px; }
+
+/* Agent Builders: where each capability runs, stepping down from your app into the managed sandbox. */
+.reveal .builder-stack { display: grid; gap: 12px; height: 100%; align-content: center; }
+.reveal .builder-layer { display: grid; grid-template-columns: 170px 1fr; align-items: center; gap: 20px; padding: 16px 24px; border-radius: 10px; border: 1px solid var(--role-border-accent); background: var(--role-surface); }
+.reveal .builder-layer--agent { margin-left: 48px; background: var(--role-surface-accent); }
+.reveal .builder-layer--sandbox { margin-left: 96px; background: var(--sf-mid-blue); border-color: var(--sf-mid-blue); }
+.reveal .builder-layer--sandbox .builder-where, .reveal .builder-layer--sandbox strong, .reveal .builder-layer--sandbox p { color: var(--sf-white) !important; }
+.reveal .builder-layer--sandbox .badge--ga { color: var(--sf-mid-blue); background: var(--sf-white); border-color: var(--sf-white); }
+.reveal .builder-where { color: var(--role-label); font-size: 13px; font-weight: 700; letter-spacing: .12em; }
+.reveal .builder-layer p { margin-top: 5px !important; }
+
+/* One-line "also new" note for smaller related launches. */
+.reveal .visual-slide .also-new { margin: 12px 0 0; color: var(--role-ink); font-size: 15px; line-height: 1.3; }
+.reveal .also-new b { margin-right: 6px; color: var(--role-label); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; }
+.reveal .also-new .badge { margin: 0 6px 0 0; }
+
+/* Where to start: four pilots, each with a success test. */
+.reveal .evaluation-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px 24px; }
+.reveal .evaluation-grid article { padding: 18px 25px; border-left: 4px solid var(--role-accent); background: var(--role-surface-accent); }
+.reveal .evaluation-grid article span { color: var(--role-label); font-size: 13px; font-weight: 700; letter-spacing: .12em; }
+.reveal .evaluation-grid article h3 { margin: 8px 0 5px; font-size: 24px; }
+.reveal .evaluation-grid article p { margin: 0; font-size: 18px; line-height: 1.25; }
+.reveal .evaluation-grid article p.exit { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--role-border-accent); color: var(--sf-mid-blue); font-size: 16px; font-weight: 600; }
+
+/* Keynotes bridge. */
+.reveal #keynotes .card { min-height: 300px; }
+
+/* Closing statement: one left axis, the question as the final beat. */
+.reveal .statement-lockup h2 { margin-bottom: 22px; text-wrap: balance; }
+.reveal .statement-lockup .lede { max-width: 760px; font-size: 26px; }
+.reveal .slides section.dark-slide .closing-question { max-width: 760px; margin-top: 28px; padding-top: 18px; color: var(--sf-white); font-size: 26px; font-weight: 700; text-align: left; border-top-color: rgba(255,255,255,.4); }
+
+/* Sources. */
+.reveal .source-list { columns: 2; column-gap: 64px; width: 100%; }
+.reveal .source-list li { break-inside: avoid; font-size: 17px; margin-bottom: 6px; line-height: 1.25; }
+.reveal #sources .note-strip { margin-top: 28px; }
+
+/* Motion: entrances only. Start states live in keyframe `from` with fill `both`, so the
+   print rule in components.css (animation: none) leaves every element in its final state.
+   Fragments are excluded because an opacity animation would override their hidden state. */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal .visual-slide.present .visual-body > * > *:not(.fragment),
+  .reveal #route.present .route-stops > article,
+  .reveal #keynotes.present .card { animation: expedition-enter .45s ease-out both; }
+  .reveal .visual-slide.present .visual-body > * > *:nth-child(2):not(.fragment),
+  .reveal #route.present .route-stops > article:nth-child(2),
+  .reveal #keynotes.present .card:nth-child(2) { animation-delay: .12s; }
+  .reveal .visual-slide.present .visual-body > * > *:nth-child(3):not(.fragment),
+  .reveal #route.present .route-stops > article:nth-child(3),
+  .reveal #keynotes.present .card:nth-child(3) { animation-delay: .24s; }
+  .reveal .visual-slide.present .visual-body > * > *:nth-child(4):not(.fragment),
+  .reveal #route.present .route-stops > article:nth-child(4) { animation-delay: .36s; }
+  .reveal .visual-slide.present .visual-body > * > *:nth-child(5):not(.fragment) { animation-delay: .48s; }
+  .reveal .visual-slide.present .visual-bottom { animation: expedition-enter .4s ease-out .6s both; }
+
+  .reveal .title-slide.present .expedition-route path { animation: route-draw 1.4s ease-out .3s both; }
+  .reveal .title-slide.present .expedition-route circle,
+  .reveal .title-slide.present .route-stop { animation: expedition-fade .4s ease-out both; }
+  .reveal .title-slide.present .expedition-route circle:nth-of-type(1), .reveal .title-slide.present .route-stop--1 { animation-delay: .35s; }
+  .reveal .title-slide.present .expedition-route circle:nth-of-type(2), .reveal .title-slide.present .route-stop--2 { animation-delay: .7s; }
+  .reveal .title-slide.present .expedition-route circle:nth-of-type(3), .reveal .title-slide.present .route-stop--3 { animation-delay: 1.05s; }
+  .reveal .title-slide.present .expedition-route circle:nth-of-type(4), .reveal .title-slide.present .route-stop--4 { animation-delay: 1.4s; }
+
+  .reveal #route.present .route-track:before,
+  .reveal #data-engineering.present .pipeline-track:before { animation: draw-x .8s ease-out .1s both; }
+  .reveal #real-time.present .realtime-line i { animation: draw-x .35s linear both; }
+  .reveal #real-time.present .realtime-line i:nth-of-type(1) { animation-delay: .2s; }
+  .reveal #real-time.present .realtime-line i:nth-of-type(2) { animation-delay: .5s; }
+  .reveal #real-time.present .realtime-line i:nth-of-type(3) { animation-delay: .8s; }
+  .reveal #cowork.present .workbench-graph i { animation: grow-y .5s ease-out .3s both; }
+  .reveal #agent-builders.present .builder-layer:nth-child(2) { animation-delay: .2s; }
+  .reveal #agent-builders.present .builder-layer:nth-child(3) { animation-delay: .4s; }
+  .reveal #lakehouse.present .lakehouse-center,
+  .reveal #governance.present .governance-core { animation: hub-in .5s cubic-bezier(.2,.8,.3,1.15) .15s both; }
+
+  @keyframes expedition-enter { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  @keyframes expedition-fade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes draw-x { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes grow-y { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+  @keyframes hub-in { from { opacity: 0; transform: scale(.9); } to { opacity: 1; transform: none; } }
+  @keyframes route-draw { from { stroke-dasharray: 702; stroke-dashoffset: 702; } to { stroke-dasharray: 702; stroke-dashoffset: 0; } }
+}
+@media print { .reveal *, .reveal *::before, .reveal *::after { animation: none !important; } }
+
+/* Business Context: sources feed one governed layer, then the three capabilities */
+.reveal .context-visual { display: flex; flex-direction: column; gap: 16px; height: 100%; }
+.reveal .context-sources { display: flex; justify-content: center; gap: 14px; }
+.reveal .context-sources span { padding: 8px 16px; border: 1px solid var(--role-border); border-radius: 6px; color: var(--role-label); font-size: 15px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; background: var(--role-surface); }
+.reveal .context-layer { display: flex; align-items: center; justify-content: center; gap: 18px; padding: 14px 24px; border: 2px solid var(--role-accent); border-radius: 10px; background: var(--role-surface-accent); }
+.reveal .context-layer strong { font-size: 22px; line-height: 1.2; }
+.reveal .context-features { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
+.reveal .context-features article { padding: 2px 0 0 14px; border-left: 3px solid var(--role-accent); }
+.reveal .context-features article strong { font-size: 18px; }
+.reveal .context-features article p { margin-top: 5px; font-size: 15px; line-height: 1.28; }
+
+</style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+<section id="title" class="title-slide" data-slide-type="title">
+<div class="dot-field" aria-hidden="true"></div>
+<div class="slide-center"><div class="title-lockup">
+<p class="eyebrow">Resumen de Expedition 2026 | Visión general de la solución</p>
+<h1>Expedition 2026: qué ha cambiado</h1>
+<p class="lede">Los agentes han pasado de la demo al trabajo delegado. Esto es lo que puedes activar hoy.</p>
+<p class="title-meta">Snowflake Sales Engineering | 5 de noviembre de 2026 | Solo GA y public preview</p>
+</div></div>
+<div class="expedition-route" aria-hidden="true">
+<svg viewBox="0 0 400 480"><path d="M40 420 C180 420 75 315 210 300 S330 205 230 155 S270 65 350 55" fill="none" stroke="currentColor" stroke-width="3"/>
+<circle cx="40" cy="420" r="8"/><circle cx="210" cy="300" r="8"/><circle cx="230" cy="155" r="8"/><circle cx="350" cy="55" r="8"/></svg>
+<span class="route-stop route-stop--1">01 / AGENTES</span><span class="route-stop route-stop--2">02 / CONSTRUIR</span>
+<span class="route-stop route-stop--3">03 / CONECTAR</span><span class="route-stop route-stop--4">04 / GOBERNAR</span>
+</div>
+<footer class="slide-footer"><span>Snowflake</span><span>Resumen de Expedition 2026 | Visión general de la solución</span></footer>
+<aside class="notes"><ul><li>Este es un resumen práctico de Snowflake Expedition 2026, pensado para vuestros equipos técnicos.</li><li>Todo lo que aparece en estas diapositivas está en disponibilidad general o en public preview, así que podéis probarlo o evaluarlo ya.</li><li>Las private previews y lo que llegará próximamente se han dejado fuera a propósito; puedo contároslo por separado si algo es relevante para vuestro roadmap.</li><li>Esta es la versión final, actualizada tras el cierre de Expedition el 5 de noviembre; todos los lanzamientos de producto llegaron el primer día.</li></ul><style>.notes-guidance{margin-top:14px;padding:11px 15px;border-left:4px solid #FF9F36;background:color-mix(in srgb,#FF9F36 12%,#FFFFFF);border-radius:6px;font-size:0.92em;line-height:1.45;color:#5B5B5B}.notes-guidance b{color:#000000;letter-spacing:0.06em;text-transform:uppercase}</style><p class="notes-guidance"><b>Orientación</b> &mdash; Deja claro el alcance desde el principio: solo GA y public preview. Si alguien pregunta por Business Ontology, Cortex Sense, Datastream, los Bots de CoCo y CoWork, Agent Integrity, el enrutamiento dinámico de modelos o la Async Agent API para CoWork, confirma que se anunciaron pero aún no están en public preview; ninguno tiene fecha.</p></aside>
+</section>
+
+<section id="route" data-slide-type="agenda">
+<header class="slide-header"><p class="kicker"><span>La ruta</span></p><h2>Cuatro paradas, diez áreas, una historia agéntica</h2></header>
+<div class="slide-body route-map">
+<div class="route-track" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="route-stops">
+<article><b>01</b><h3>Agentes</h3><p>Delega trabajo de ingeniería y comparte análisis.</p><ul><li>CoCo</li><li>CoWork</li></ul></article>
+<article><b>02</b><h3>Construir</h3><p>Lee documentos, integra agentes, despliega pipelines.</p><ul><li>Plataforma de IA</li><li>Constructores de agentes</li><li>Ingeniería de datos</li></ul></article>
+<article><b>03</b><h3>Conectar</h3><p>Ancla los agentes en contexto; accede a datos y apps sin copias.</p><ul><li>Contexto de negocio</li><li>Open Lakehouse</li><li>Analítica en tiempo real</li><li>Apps y bases de datos</li></ul></article>
+<article><b>04</b><h3>Gobernar</h3><p>Enruta las llamadas a modelos y controla accesos, trazas y gasto.</p><ul><li>Gobierno y FinOps</li></ul></article>
+</div>
+<p class="route-note">Todas las capacidades que siguen están en disponibilidad general o en public preview a 5 de noviembre de 2026.</p>
+</div>
+<footer class="slide-footer"><span>Snowflake</span><span>Resumen de Expedition 2026 | Visión general de la solución</span></footer>
+<aside class="notes"><ul><li>Esta es la ruta de las próximas diez diapositivas.</li><li>Empezamos con agentes haciendo trabajo real, luego lo que construyes con ellos y después los datos y apps a los que acceden.</li><li>El gobierno va al final, porque es lo que permite que todo lo anterior escale más allá de un piloto.</li><li>Cada diapositiva de área responde a las mismas tres preguntas: qué se ha lanzado, qué aporta a tu equipo y por qué ahora.</li><li>Versión corta: delegar, construir, conectar, gobernar.</li></ul><style>.notes-guidance{margin-top:14px;padding:11px 15px;border-left:4px solid #FF9F36;background:color-mix(in srgb,#FF9F36 12%,#FFFFFF);border-radius:6px;font-size:0.92em;line-height:1.45;color:#5B5B5B}.notes-guidance b{color:#000000;letter-spacing:0.06em;text-transform:uppercase}</style><p class="notes-guidance"><b>Orientación</b> &mdash; Usa las cuatro paradas como columna vertebral de la charla. Si vas corto de tiempo, elige una parada y profundiza en ella.</p></aside>
+</section>
+
+<section id="coco" class="visual-slide visual-slide--coco" data-slide-type="visual">
+<header class="slide-header"><p class="kicker"><span>CoCo</span><span class="route-chip" aria-label="Route stop 01, Agents, area 1 of 10"><b>01</b> AGENTES <i>1 / 10</i></span></p><h2>CoCo pasa de la programación asistida al trabajo delegado</h2></header>
+<div class="slide-body visual-body"><div class="journey-flow" aria-label="Illustrative engineering workflow">
+<article class="journey-node"><span class="journey-label">01 DELEGAR</span><strong>Cloud Agents</strong><span class="badge badge--ga">GA</span><p>Trabajo de larga duración en entornos aislados gestionados por Snowflake, con tus permisos.</p></article>
+<span class="flow-arrow fragment fade-in" data-fragment-index="1" aria-hidden="true">→</span>
+<article class="journey-node fragment fade-up" data-fragment-index="1"><span class="journey-label">02 REPETIR</span><strong>CoCo Automations</strong><span class="badge badge--preview">Public Preview</span><p>Describe una tarea recurrente; se ejecuta según calendario con tu identidad y deja una transcripción de cada ejecución.</p></article>
+<span class="flow-arrow fragment fade-in" data-fragment-index="2" aria-hidden="true">→</span>
+<article class="journey-node fragment fade-up" data-fragment-index="2"><span class="journey-label">03 ESCALAR</span><strong>Compartir skills y plugins</strong><span class="badge badge--ga">GA</span><p>Publica flujos revisados en un catálogo controlado por roles; la memoria está en public preview.</p></article>
+</div></div>
+<div class="visual-bottom"><p><span>QUÉ APORTA</span>Tus ingenieros pueden delegar desarrollos, investigaciones y correcciones rutinarias manteniendo los límites de permisos y las pistas de auditoría.</p><p><span>POR QUÉ AHORA</span>El trabajo operativo recurrente es el lugar más barato para demostrar el valor de los agentes de forma segura.</p></div>
+<p class="also-new"><b>También nuevo:</b><span class="badge badge--preview">Public Preview</span> CoCo para Excel y Google Sheets consulta datos de Snowflake en vivo con tu propio rol.</p>
+<footer class="slide-footer"><span>Snowflake</span><span>Resumen de Expedition 2026 | Visión general de la solución</span></footer>
+<aside class="notes"><ul><li>Pensad en esto como el paso de un asistente de código al que le das prompts a un compañero de equipo al que le asignas trabajo.</li><li>Los Cloud Agents se ejecutan en un sandbox gestionado solo con los accesos de quien los lanzó, y las Automations mantienen ese trabajo en marcha durante la noche, pudiendo revisar exactamente qué hizo cada ejecución.</li><li>Un buen flujo de trabajo se convierte en el estándar del equipo.</li><li>En Snowsight, el nuevo modo CoCo ejecuta sesiones en paralelo con vista previa en vivo y GitHub, de modo que el trabajo puede acabar en una pull request; y los equipos de finanzas y operaciones ya pueden usarlo dentro de las hojas de cálculo que ya utilizan.</li><li>Primer caso fácil: triaje de calidad de datos.</li></ul><style>.notes-guidance{margin-top:14px;padding:11px 15px;border-left:4px solid #FF9F36;background:color-mix(in srgb,#FF9F36 12%,#FFFFFF);border-radius:6px;font-size:0.92em;line-height:1.45;color:#5B5B5B}.notes-guidance b{color:#000000;letter-spacing:0.06em;text-transform:uppercase}</style><p class="notes-guidance"><b>Orientación</b> &mdash; La nota de prensa del 3 de nov. anunció Automations como GA, pero la página de documentación sigue indicando Preview en todas las superficies (Snowsight, CLI, Desktop); seguimos la documentación. Cada ejecución usa el rol por defecto del creador, no el rol activo al crearla, y factura tiempo de tarea más tokens. La GA de Cloud Agents está confirmada en la documentación (solo regiones comerciales). CoCo Memory está en public preview. El modo CoCo en Snowsight está en public preview y se despliega gradualmente. El Cortex Agent SDK se cubre en la diapositiva de Constructores de agentes. Agent Profiles y el enrutamiento de modelos tienen estados sin resolver o privados; déjalos fuera. Los complementos para hojas de cálculo están en public preview y se facturan por consumo de tokens.</p></aside>
+</section>
+
+<section id="cowork" class="visual-slide visual-slide--cowork" data-slide-type="visual">
+<header class="slide-header"><p class="kicker"><span>CoWork</span><span class="route-chip" aria-label="Route stop 01, Agents, area 2 of 10"><b>01</b> AGENTES <i>2 / 10</i></span></p><h2>CoWork convierte el análisis de una persona en trabajo de equipo</h2></header>
+<div class="slide-body visual-body"><div class="workbench">
+<div class="workbench-screen"><div class="workbench-top"><span>ANÁLISIS / VISTA COMPARTIDA</span><span aria-hidden="true">○ &nbsp; ○ &nbsp; ○</span></div>
+<div class="workbench-content"><div class="workbench-graph" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+<div class="workbench-insight"><span>PREGUNTA QUÉ HA CAMBIADO</span><strong>De un dashboard a una pregunta de seguimiento.</strong></div></div></div>
+<div class="workbench-rail"><article><strong>CoWork Profiles</strong><span class="badge badge--preview">Public Preview</span><p>Los administradores definen agentes, enrutamiento, skills e instrucciones por equipo sin ampliar accesos.</p></article><article><strong>Snowflake Dashboards</strong><span class="badge badge--preview">Public Preview</span><p>Describe un dashboard a CoCo, compártelo por rol y razona sobre él dentro de CoWork.</p></article><article><strong>Memoria, skills y documentos</strong><span class="badge badge--ga">GA</span><p>Memoria personal, conectores MCP y generación de PDF, PPTX y DOCX.</p></article></div>
+</div></div>
+<div class="visual-bottom"><p><span>QUÉ APORTA</span>Los equipos técnicos construyen una experiencia gobernada por función, y los usuarios de negocio ya no necesitan elegir antes el agente adecuado.</p><p><span>POR QUÉ AHORA</span>La adopción en negocio depende de agentes que ya conozcan el contexto de cada equipo.</p></div>
+<p class="also-new"><b>También nuevo:</b><span class="badge badge--preview">Public Preview</span> CoCo y CoWork en Slack: haz preguntas, lanza flujos de trabajo y revisa resultados en los canales.</p>
+<footer class="slide-footer"><span>Snowflake</span><span>Resumen de Expedition 2026 | Visión general de la solución</span></footer>
+<aside class="notes"><ul><li>Para tu equipo de plataforma, el trabajo pasa de responder peticiones a configurar experiencias que las respondan.</li><li>Los Profiles permiten decidir qué agentes e instrucciones recibe cada equipo, y los usuarios no pueden sobrescribir esa configuración.</li><li>Los dashboards dejan de ser el final de la conversación.</li><li>Y cuando alguien obtiene una respuesta útil, CoWork puede convertirla en un documento que el resto del equipo puede reutilizar.</li><li>Empieza con un equipo que ya tenga métricas limpias.</li></ul><style>.notes-guidance{margin-top:14px;padding:11px 15px;border-left:4px solid #FF9F36;background:color-mix(in srgb,#FF9F36 12%,#FFFFFF);border-radius:6px;font-size:0.92em;line-height:1.45;color:#5B5B5B}.notes-guidance b{color:#000000;letter-spacing:0.06em;text-transform:uppercase}</style><p class="notes-guidance"><b>Orientación</b> &mdash; CoWork Automations no tienen fase de lanzamiento indicada en el blog público, y los Bots llegarán próximamente en private preview; deja ambos fuera de esta diapositiva. La publicación de informes HTML está en public preview (release note del 4 de nov.). Snowflake Mobile se describe de forma inconsistente (nueva app en public preview según la nota de prensa; CoCo en Mobile iOS GA y Android public preview según el blog resumen), así que queda fuera de la diapositiva.</p></aside>
+</section>
+
+<section id="ai-platform" class="visual-slide visual-slide--ai-platform" data-slide-type="visual">
+<header class="slide-header"><p class="kicker"><span>Plataforma de IA</span><span class="route-chip" aria-label="Route stop 02, Build, area 3 of 10"><b>02</b> CONSTRUIR <i>3 / 10</i></span></p><h2>Lee todos los documentos; ajusta tus propios modelos</h2></header>
+<div class="slide-body visual-body"><div class="ai-constellation"><article class="ai-primary"><span class="visual-label">DOCUMENTOS / COLECCIONES</span>
+<div class="document-stack" aria-hidden="true"><span></span><span></span><span></span></div><div class="ai-primary-copy"><strong>Analytical Search</strong><span class="badge badge--preview">Public Preview</span><p>Cuenta, compara y analiza tendencias en miles de documentos con recuperación, IA y SQL.</p></div></article>
+<div class="ai-secondary"><article><span class="visual-label">INTERPRETAR</span><strong>Parsing agéntico de documentos</strong><span class="badge badge--preview">Public Preview</span><p>El modo AGENTIC de AI_PARSE_DOCUMENT convierte gráficos, tablas y capturas de pantalla en texto y datos.</p></article>
+<article><span class="visual-label">ESPECIALIZAR</span><strong>Cortex Training</strong><span class="badge badge--preview">Public Preview</span><p>Post-entrena modelos open-weight con LoRA, SFT o RL; Snowflake gestiona las GPU.</p></article></div></div></div>
+<div class="visual-bottom"><p><span>QUÉ APORTA</span>Puedes responder preguntas sobre colecciones completas, procesar documentos complejos sin un pipeline aparte y probar modelos especializados sin infraestructura de GPU.</p><p><span>POR QUÉ AHORA</span>El coste de los agentes escala con los tokens; los modelos open-weight ajustados son una palanca creíble.</p></div>
+<p class="also-new"><b>También nuevo:</b><span class="badge badge--preview">Public Preview</span> AI_EXTRACT lee archivos de 1.000 páginas, con mayor precisión y sin ajustar scale_factor.</p>
+<footer class="slide-footer"><span>Snowflake</span><span>Resumen de Expedition 2026 | Visión general de la solución</span></footer>
+<aside class="notes"><ul><li>La mayoría de las búsquedas documentales encuentran unos pocos pasajes; Analytical Search responde preguntas sobre toda la colección.</li><li>El modo AGENTIC decide cómo procesar cada página, de modo que los gráficos y las capturas dejan de ser puntos ciegos, y AI_EXTRACT ya maneja archivos de 1.000 páginas sin ajustar scale_factor.</li><li>Cortex Training mantiene los datos de entrenamiento, los pesos y la inferencia dentro del perímetro gobernado de Snowflake; el ahorro del 61 % publicado es un benchmark concreto de LoRA, no una garantía.</li><li>Nada de esto requiere un clúster de GPU ni un pipeline documental aparte.</li><li>Elige primero una carga de trabajo acotada y medible.</li></ul><style>.notes-guidance{margin-top:14px;padding:11px 15px;border-left:4px solid #FF9F36;background:color-mix(in srgb,#FF9F36 12%,#FFFFFF);border-radius:6px;font-size:0.92em;line-height:1.45;color:#5B5B5B}.notes-guidance b{color:#000000;letter-spacing:0.06em;text-transform:uppercase}</style><p class="notes-guidance"><b>Orientación</b> &mdash; Business Ontology y Cortex Sense llegarán próximamente en public preview y quedan excluidos por alcance. Menciónalos solo como próximos si preguntan. La cifra del 61 % es un benchmark del fabricante con precios de la competencia del 22 de oct. Cortex Training está solo en regiones comerciales de AWS y requiere habilitación en la cuenta. El límite de 1.000 páginas de AI_EXTRACT (antes 125) requiere inferencia entre regiones; Snowflake reporta una mejora relativa de precisión del 12,8 % en sus propias evaluaciones.</p></aside>
+</section>
+
+<section id="agent-builders" class="visual-slide visual-slide--agent-builders" data-slide-type="visual">
+<header class="slide-header"><p class="kicker"><span>Constructores de agentes</span><span class="route-chip" aria-label="Route stop 02, Build, area 4 of 10"><b>02</b> CONSTRUIR <i>4 / 10</i></span></p><h2>Integra agentes en tus propias apps y flujos de trabajo</h2></header>
+<div class="slide-body visual-body"><div class="builder-stack" aria-label="Where each capability runs, from your app down to the managed sandbox">
+<article class="builder-layer builder-layer--app"><span class="builder-where">EN TU APP</span><div><strong>Cortex Agent SDK</strong><span class="badge badge--preview">Public Preview</span><p>Python y TypeScript: streaming, hilos persistentes y ejecuciones en segundo plano a las que te reconectas por ID.</p></div></article>
+<article class="builder-layer builder-layer--agent"><span class="builder-where">EN EL AGENTE</span><div><strong>Herramienta de ejecución de código</strong><span class="badge badge--ga">GA</span><p>El agente escribe y ejecuta Python en un sandbox aislado para análisis, cálculos y gráficos.</p></div></article>
+<article class="builder-layer builder-layer--sandbox"><span class="builder-where">EN EL SANDBOX</span><div><strong>Controles del Coding Agent</strong><span class="badge badge--ga">GA</span><p>Ajusta el esfuerzo de razonamiento, añade instrucciones de sistema y monta stages en un sandbox gestionado por Snowflake.</p></div></article>
+</div></div>
+<div class="visual-bottom"><p><span>QUÉ APORTA</span>Tus desarrolladores lanzan experiencias con agentes en vuestros propios productos mientras Snowflake se encarga de la orquestación, los sandboxes y el gobierno.</p><p><span>POR QUÉ AHORA</span>Los equipos quieren agentes dentro de sus propias apps, no solo en la interfaz de Snowflake.</p></div>
+<footer class="slide-footer"><span>Snowflake</span><span>Resumen de Expedition 2026 | Visión general de la solución</span></footer>
+<aside class="notes"><ul><li>Esta es la cara para desarrolladores de la historia de agentes: agentes de Snowflake dentro de tu propio software.</li><li>El SDK resuelve la fontanería, desde texto en streaming, llamadas a herramientas y citas hasta hilos multi-turno y ejecuciones largas a las que te reconectas, con Cortex Analyst, Cortex Search, servidores MCP y herramientas personalizadas.</li><li>La ejecución de código significa que el agente puede calcular, no solo describir.</li><li>El Coding Agent te da un sandbox gestionado con las herramientas de CoCo, ajustable en esfuerzo e instrucciones, con tus stages montados.</li><li>Prototipa primero una app interna.</li></ul><style>.notes-guidance{margin-top:14px;padding:11px 15px;border-left:4px solid #FF9F36;background:color-mix(in srgb,#FF9F36 12%,#FFFFFF);border-radius:6px;font-size:0.92em;line-height:1.45;color:#5B5B5B}.notes-guidance b{color:#000000;letter-spacing:0.06em;text-transform:uppercase}</style><p class="notes-guidance"><b>Orientación</b> &mdash; Estados verificados en release notes: Agent SDK en public preview (release note del 13 de oct.; el blog de CoCo del 3 de nov. lo llama disponibilidad general, así que confírmalo antes de presentar), ejecución de código GA (5 de oct.), Coding Agent GA (26 de ago.) con controles del 28 de oct. El antiguo Cortex Code Agent SDK queda sustituido para apps nuevas. No afirmes que el coding agent se expone vía MCP o SQL hasta que una release note lo confirme.</p></aside>
+</section>
+
+<section id="data-engineering" class="visual-slide visual-slide--data-engineering" data-slide-type="visual">
+<header class="slide-header"><p class="kicker"><span>Ingeniería de datos</span><span class="route-chip" aria-label="Route stop 02, Build, area 5 of 10"><b>02</b> CONSTRUIR <i>5 / 10</i></span></p><h2>Despliega pipelines con menos montaje manual</h2></header>
+<div class="slide-body visual-body"><div class="pipeline-visual" aria-label="Illustrative pipeline delivery path">
+<div class="pipeline-track"><span>DISEÑAR</span><span>DESPLEGAR</span><span>REFRESCAR</span></div>
+<div class="pipeline-steps"><article><strong>Pipeline Builder</strong><span class="badge badge--preview">Public Preview</span><p>Orquestación conversacional y visual de notebooks, trabajos de ML, tasks y SQL.</p></article><article><strong>DCM Projects</strong><span class="badge badge--ga">GA</span><p>Gestión declarativa de infraestructura, pipelines y gobierno como código.</p></article><article><strong>Novedades en Dynamic Tables</strong><span class="badge badge--ga">GA</span><p>Incrementalización personalizada y recomendaciones de optimización que CoCo puede ayudar a aplicar.</p></article></div></div></div>
+<div class="visual-bottom"><p><span>QUÉ APORTA</span>La entrega de pipelines se acorta mientras las pruebas, la revisión y el control declarativo siguen siendo el sistema de referencia.</p><p><span>POR QUÉ AHORA</span>Estas capacidades han subido de fase desde Summit, así que ya están listas para una evaluación real.</p></div>
+<footer class="slide-footer"><span>Snowflake</span><span>Resumen de Expedition 2026 | Visión general de la solución</span></footer>
+<aside class="notes"><ul><li>Todas existían en una fase anterior; Expedition es el momento en que han madurado.</li><li>Pipeline Builder ha pasado de private a public preview, así que tu equipo ya puede probarlo directamente.</li><li>DCM Projects ha alcanzado disponibilidad general, lo que convierte la infraestructura como código en una opción soportada por defecto.</li><li>En Dynamic Tables, la incrementalización personalizada te da control donde el refresco automático no basta.</li><li>Snowpark Connect for Apache Spark y dbt Projects también son GA, si son relevantes para vuestro stack.</li></ul><style>.notes-guidance{margin-top:14px;padding:11px 15px;border-left:4px solid #FF9F36;background:color-mix(in srgb,#FF9F36 12%,#FFFFFF);border-radius:6px;font-size:0.92em;line-height:1.45;color:#5B5B5B}.notes-guidance b{color:#000000;letter-spacing:0.06em;text-transform:uppercase}</style><p class="notes-guidance"><b>Orientación</b> &mdash; Preséntalos como avances de madurez, no como productos nuevos. DCM Test Branches está en private preview; déjalo fuera.</p></aside>
+</section>
+
+<section id="context" class="visual-slide visual-slide--context" data-slide-type="visual">
+<header class="slide-header"><p class="kicker"><span>Contexto de negocio</span><span class="route-chip" aria-label="Route stop 03, Connect, area 6 of 10"><b>03</b> CONECTAR <i>6 / 10</i></span></p><h2>Ancla los agentes en el contexto que ya cuidas</h2></header>
+<div class="slide-body visual-body"><div class="context-visual" aria-label="Where agent context comes from">
+<div class="context-sources"><span>BI y dbt</span><span>Datos compartidos</span><span>Datos de Marketplace</span></div>
+<div class="context-layer"><span class="visual-label">HORIZON CATALOG / VISTAS SEMÁNTICAS</span><strong>Los agentes responden con tus definiciones, no con suposiciones.</strong></div>
+<div class="context-features"><article><strong>Horizon Context</strong><span class="badge badge--preview">Public Preview</span><p>Conecta Horizon Catalog a 18 fuentes, incluidas Power BI, Tableau y dbt, con linaje entre ellas.</p></article><article><strong>AI Data Package</strong><span class="badge badge--preview">Public Preview</span><p>Más de 60 datasets sectoriales curados, con vistas semánticas y un agente de CoWork listo para usar.</p></article><article><strong>Agentes para datos compartidos</strong><span class="badge badge--preview">Public Preview</span><p>Los datos que te comparten pueden llegar con un Cortex Agent y una vista semántica generados.</p></article></div></div></div>
+<div class="visual-bottom"><p><span>QUÉ APORTA</span>Las respuestas de los agentes coinciden con los informes en los que tus equipos ya confían, así que se ponen menos en duda.</p><p><span>POR QUÉ AHORA</span>Una cifra errónea dada con seguridad es la forma más rápida de perder la confianza en un agente.</p></div>
+<p class="also-new"><b>También disponible:</b><span class="badge badge--preview">Public Preview</span> Agentic Marketplace Discovery encuentra, compara e instala datos y apps mediante una conversación con CoCo.</p>
+<footer class="slide-footer"><span>Snowflake</span><span>Resumen de Expedition 2026 | Visión general de la solución</span></footer>
+<aside class="notes"><ul><li>Cuando un agente devuelve una cifra de ingresos errónea, el problema rara vez es el modelo; es la falta de contexto.</li><li>Horizon Context trae descripciones, etiquetas y linaje a nivel de columna desde herramientas como Power BI, Tableau y dbt al catálogo donde ya viven tus políticas.</li><li>Los datos compartidos y comprados dejan de llegar como tablas desnudas, porque pueden venir acompañados de semántica y de un agente.</li><li>Business Ontology y Cortex Sense se construirán más adelante sobre esta base.</li><li>Empieza donde ya existen tus definiciones.</li></ul><style>.notes-guidance{margin-top:14px;padding:11px 15px;border-left:4px solid #FF9F36;background:color-mix(in srgb,#FF9F36 12%,#FFFFFF);border-radius:6px;font-size:0.92em;line-height:1.45;color:#5B5B5B}.notes-guidance b{color:#000000;letter-spacing:0.06em;text-transform:uppercase}</style><p class="notes-guidance"><b>Orientación</b> &mdash; Fases: Horizon Context en public preview (release note del 12 de oct.; solo regiones comerciales de AWS y Azure, no gobierno ni China). El paquete de datos curados y los agentes generados para datos compartidos están en public preview según el blog resumen del 3 de nov. Agentic Marketplace Discovery en public preview (release note del 9 de oct.). Horizon Context y Marketplace Discovery son anteriores al evento, así que preséntalos como ya disponibles, no como lanzamientos de Expedition. Business Ontology y Cortex Sense estarán pronto en public preview, y la aplicación de row access y masking en Cortex Search está en private preview; todo ello queda fuera de la diapositiva.</p></aside>
+</section>
+
+<section id="lakehouse" class="visual-slide visual-slide--lakehouse" data-slide-type="visual">
+<header class="slide-header"><p class="kicker"><span>Open Lakehouse</span><span class="route-chip" aria-label="Route stop 03, Connect, area 7 of 10"><b>03</b> CONECTAR <i>7 / 10</i></span></p><h2>Más datos y motores, cero copias nuevas</h2></header>
+<div class="slide-body visual-body"><div class="lakehouse-visual"><div class="lakehouse-diagram"><div class="lakehouse-sources"><span>SAP</span><span>Workday</span><span>Salesforce</span></div>
+<div class="lakehouse-center"><span class="visual-label">ACCESO ABIERTO Y GOBERNADO</span><strong>Un único patrimonio de datos gobernado.<br>Más formas de usarlo.</strong></div>
+<div class="lakehouse-outcomes"><span>Snowflake</span><span>Motores Iceberg</span></div></div>
+<div class="lakehouse-features"><article><strong>Integraciones zero-copy</strong><span class="badge badge--ga">GA</span><p>Datos de SAP Business Data Cloud, Workday y Salesforce, consultados donde residen.</p></article><article><strong>Open Data Sharing</strong><span class="badge badge--ga">GA</span><p>Comparte con motores compatibles con Iceberg REST, sobre Apache Polaris.</p></article><article><strong>Backups de Iceberg</strong><span class="badge badge--ga">GA</span><p>Haz copia de seguridad y restaura tablas Iceberg y Dynamic Iceberg almacenadas en Snowflake, en AWS.</p></article></div></div></div>
+<div class="visual-bottom"><p><span>QUÉ APORTA</span>Reduces pipelines de extracción y mantienes la libertad de motor, con una única capa de gobierno en lugar de una por herramienta.</p><p><span>POR QUÉ AHORA</span>Los agentes necesitan un acceso amplio a los datos; las copias multiplican tanto el coste como el riesgo de gobierno.</p></div>
+<p class="also-new"><b>También nuevo:</b><span class="badge badge--preview">Public Preview</span> Write-Audit-Publish sobre Iceberg permite a Spark probar un pipeline en una rama de datos antes de llegar a producción.</p>
+<footer class="slide-footer"><span>Snowflake</span><span>Resumen de Expedition 2026 | Visión general de la solución</span></footer>
+<aside class="notes"><ul><li>Cada copia que eliminas es un pipeline que ya no mantienes y una política que ya no duplicas.</li><li>Las integraciones zero-copy traen datos de SAP, Workday y Salesforce sin trabajos de extracción, y Open Data Sharing llega a cualquier motor compatible con Iceberg REST.</li><li>Novedad de esta semana: los backups ya cubren las tablas Iceberg en almacenamiento de Snowflake, así que los datos en formato abierto tienen la misma capacidad de recuperación que las tablas nativas.</li><li>Write-Audit-Publish lleva el patrón de pull request a los datos: escribe en una rama Iceberg aislada, valídala desde cualquier motor y después publícala o descártala.</li><li>¿Usáis más de un motor? Empezad por aquí.</li></ul><style>.notes-guidance{margin-top:14px;padding:11px 15px;border-left:4px solid #FF9F36;background:color-mix(in srgb,#FF9F36 12%,#FFFFFF);border-radius:6px;font-size:0.92em;line-height:1.45;color:#5B5B5B}.notes-guidance b{color:#000000;letter-spacing:0.06em;text-transform:uppercase}</style><p class="notes-guidance"><b>Orientación</b> &mdash; El sharing entre nubes sin replicación y las Dynamic Iceberg Tables hacia catálogos externos están en private preview; excluidos. Write-Audit-Publish sobre Iceberg está en public preview según la nota de prensa de ingeniería de datos del 3 de nov.; la GA de los backups de Iceberg viene de la release note del 4 de nov. y por ahora es solo AWS. GAs de Iceberg relacionadas y anteriores al evento, no lanzamientos nuevos: acceso de Horizon a tablas Iceberg gestionadas externamente (29 de oct.) y Tri-Secret Secure para Iceberg almacenado en Snowflake (30 de oct.). Time Travel y version tags de Iceberg están en preview (release note del 28 de oct.).</p></aside>
+</section>
+
+<section id="real-time" class="visual-slide visual-slide--real-time" data-slide-type="visual">
+<header class="slide-header"><p class="kicker"><span>Analítica en tiempo real</span><span class="route-chip" aria-label="Route stop 03, Connect, area 8 of 10"><b>03</b> CONECTAR <i>8 / 10</i></span></p><h2>Piezas para tiempo real, GA desde septiembre</h2></header>
+<div class="slide-body visual-body"><div class="realtime-visual" aria-label="Available real-time building blocks">
+<div class="realtime-line"><span>Eventos</span><i></i><span class="is-ga">Ingesta</span><i></i><span class="is-ga">Consulta</span><i></i><span>Acción</span></div>
+<div class="realtime-features"><article><span class="visual-label">INGESTA</span><strong>Snowpipe Streaming Elastic Channels</strong><span class="badge badge--ga">GA</span><p>Rutas de ingesta compartidas que permiten a muchos productores escribir sin coordinar canales.</p></article><article><span class="visual-label">CONSULTA</span><strong>Zero-Copy Interactive</strong><span class="badge badge--ga">GA</span><p>Los interactive warehouses consultan tablas existentes sin una copia de servicio aparte.</p></article></div></div></div>
+<div class="visual-bottom"><p><span>QUÉ APORTA</span>Sirve datos frescos a agentes y apps sin montar un almacén de servicio duplicado.</p><p><span>POR QUÉ AHORA</span>Los agentes y las apps necesitan cada vez más datos con minutos de antigüedad, no horas.</p></div>
+<footer class="slide-footer"><span>Snowflake</span><span>Resumen de Expedition 2026 | Visión general de la solución</span></footer>
+<aside class="notes"><ul><li>Esta diapositiva trata de lo que puedes usar hoy más que de lo recién anunciado.</li><li>Ambas capacidades alcanzaron disponibilidad general en septiembre, antes del evento.</li><li>Elastic Channels ofrecen entrega at-least-once sin orden; los Named Channels cubren las necesidades ordenadas y exactly-once.</li><li>Zero-Copy Interactive permite apuntar interactive warehouses a las tablas estándar, dinámicas e Iceberg que ya tienes.</li><li>Las nuevas piezas de streaming anunciadas en Expedition siguen en private preview.</li></ul><style>.notes-guidance{margin-top:14px;padding:11px 15px;border-left:4px solid #FF9F36;background:color-mix(in srgb,#FF9F36 12%,#FFFFFF);border-radius:6px;font-size:0.92em;line-height:1.45;color:#5B5B5B}.notes-guidance b{color:#000000;letter-spacing:0.06em;text-transform:uppercase}</style><p class="notes-guidance"><b>Orientación</b> &mdash; Datastream y Streaming Transformations están en private preview y quedan excluidos. Un blog del 3 de nov. describe Elastic Channels como ordenados y exactly-once; el post específico de la GA dice lo contrario. Usa la semántica del post de la GA.</p></aside>
+</section>
+
+<section id="apps" class="visual-slide visual-slide--apps" data-slide-type="visual">
+<header class="slide-header"><p class="kicker"><span>Apps y bases de datos</span><span class="route-chip" aria-label="Route stop 03, Connect, area 9 of 10"><b>03</b> CONECTAR <i>9 / 10</i></span></p><h2>Cierra el círculo entre apps y analítica</h2></header>
+<div class="slide-body visual-body"><div class="apps-visual"><div class="apps-lane"><span>TRANSACCIONAL</span><strong>Postgres</strong><small>Registros operativos</small></div>
+<div class="apps-join" aria-hidden="true"><b>→</b><small>MIRROR</small></div><div class="apps-lane apps-lane--blue"><span>ANALÍTICO</span><strong>Snowflake</strong><small>Insights e IA</small></div>
+<div class="apps-join" aria-hidden="true"><b>→</b><small>SERVIR</small></div><div class="apps-lane apps-lane--dark"><span>SUPERFICIES</span><strong>Apps y agentes</strong><small>Streamlit, App Runtime, MCP</small></div>
+<div class="apps-features"><article><strong>Mirroring de Postgres a Snowflake</strong><span class="badge badge--ga">GA</span><p>Replica de forma continua tablas de Postgres para analítica e IA.</p></article><article><strong>Compartir e incrustar Streamlit</strong><span class="badge badge--ga">GA</span><p>Comparte con usuarios individuales e incrusta apps en portales y herramientas de terceros.</p></article><article><strong>MCP automático en Streamlit</strong><span class="badge badge--preview">Public Preview</span><p>Las apps se exponen como herramientas que los agentes pueden invocar.</p></article></div></div></div>
+<div class="visual-bottom"><p><span>QUÉ APORTA</span>Los datos operativos y analíticos dejan de vivir separados, y tus apps se convierten en superficies que usan tanto personas como agentes.</p><p><span>POR QUÉ AHORA</span>Hoy los prototipos son fáciles; lo difícil son los datos gobernados y llegar a producción.</p></div>
+<p class="also-new"><b>También disponible:</b><span class="badge badge--ga">GA</span> Snowflake App Runtime ejecuta apps web full-stack en Snowflake, listadas en la pestaña Apps de Snowsight.</p>
+<footer class="slide-footer"><span>Snowflake</span><span>Resumen de Expedition 2026 | Visión general de la solución</span></footer>
+<aside class="notes"><ul><li>El patrón aquí es cerrar el círculo entre donde se crean los datos y donde se analizan.</li><li>El mirroring de Postgres elimina los trabajos de sincronización a medida para datos transaccionales.</li><li>Compartir e incrustar Streamlit llega a usuarios que nunca abren Snowsight, y el MCP automático convierte una app que ya has construido en una herramienta para agentes.</li><li>¿Necesitas una interfaz a medida?</li><li>El mirroring de Snowflake de vuelta a Postgres está anunciado pero aún no en public preview.</li></ul><style>.notes-guidance{margin-top:14px;padding:11px 15px;border-left:4px solid #FF9F36;background:color-mix(in srgb,#FF9F36 12%,#FFFFFF);border-radius:6px;font-size:0.92em;line-height:1.45;color:#5B5B5B}.notes-guidance b{color:#000000;letter-spacing:0.06em;text-transform:uppercase}</style><p class="notes-guidance"><b>Orientación</b> &mdash; Snowflake App Runtime es GA (1 de sep. de 2026). El mirroring de Snowflake a Postgres y las opciones serverless/Workspaces de App Runtime se describieron como próximamente en public preview; deja esas subfuncionalidades fuera de la diapositiva.</p></aside>
+</section>
+
+<section id="governance" class="visual-slide visual-slide--governance" data-slide-type="visual">
+<header class="slide-header"><p class="kicker"><span>Gobierno y FinOps</span><span class="route-chip" aria-label="Route stop 04, Govern, area 10 of 10"><b>04</b> GOBERNAR <i>10 / 10</i></span></p><h2>Gobierna cada llamada, traza y euro de tus agentes</h2></header>
+<div class="slide-body visual-body"><div class="governance-visual"><div class="governance-core"><span class="visual-label">CORTEX AI GATEWAY <span class="badge badge--ga">GA</span></span>
+<strong>Un único endpoint gobernado para todas las llamadas a modelos.</strong><p>APIs compatibles con OpenAI y Anthropic. Las apps y coding agents existentes a menudo migran con solo una nueva base URL y un token.</p></div>
+<div class="governance-ring"><article class="fragment fade-left" data-fragment-index="1"><span class="ring-label">01 / ACCESO</span><strong>Gateway Tools para MCP</strong><span class="badge badge--preview">Public Preview</span><p>Los administradores eligen a qué herramientas de negocio acceden CoCo, Claude y Cursor a través del gateway.</p></article>
+<article class="fragment fade-left" data-fragment-index="2"><span class="ring-label">02 / TRAZAS</span><strong>Observabilidad</strong><span class="badge badge--ga">GA</span><p>Traza el modelo, los tiempos, los tokens y los errores de cada petición en tu propia cuenta.</p></article>
+<article class="fragment fade-left" data-fragment-index="3"><span class="ring-label">03 / GASTO</span><strong>Gobierno de costes</strong><span class="badge badge--ga">GA</span><p>El gasto se agrega por usuario y equipo; las cuotas por usuario bloquean al llegar al límite.</p></article></div></div></div>
+<div class="visual-bottom"><p><span>QUÉ APORTA</span>Los equipos de seguridad y plataforma pueden aprobar un despliegue más amplio de agentes porque las llamadas a modelos, el acceso a herramientas, las trazas y el gasto pasan por una única ruta controlada.</p><p><span>POR QUÉ AHORA</span>Una sola conexión sin gobierno o una factura inesperada puede paralizar todo un programa de IA.</p></div>
+<footer class="slide-footer"><span>Snowflake</span><span>Resumen de Expedition 2026 | Visión general de la solución</span></footer>
+<aside class="notes"><ul><li>A medida que se multiplican los agentes, el riesgo pasa de lo que dice un modelo a lo que un agente tiene permitido hacer.</li><li>Cortex AI Gateway ya es GA: el tráfico hacia los modelos se queda dentro del perímetro de Snowflake, respeta los controles de acceso y se registra para trazabilidad y costes; para la mayoría de clientes existentes, el cambio es de configuración, no de reescritura.</li><li>Con Gateway Tools, tus administradores deciden qué herramientas de negocio expone cada servidor MCP a los coding agents.</li><li>Cada petición se imputa al usuario que la hizo, así que el gasto se agrega por equipo, y una cuota por usuario frena a un usuario descontrolado en minutos.</li><li>Por debajo de todo, las políticas de row access y masking de Horizon siguen aplicándose, también cuando Spark lee tablas Iceberg.</li></ul><style>.notes-guidance{margin-top:14px;padding:11px 15px;border-left:4px solid #FF9F36;background:color-mix(in srgb,#FF9F36 12%,#FFFFFF);border-radius:6px;font-size:0.92em;line-height:1.45;color:#5B5B5B}.notes-guidance b{color:#000000;letter-spacing:0.06em;text-transform:uppercase}</style><p class="notes-guidance"><b>Orientación</b> &mdash; Cortex Sandboxes, Agent Trace Intelligence, Agent Abuse Detection y Dynamic Model Routing están en private preview. Cortex AI Guardrails aparece como &#x27;public preview próximamente&#x27; en la nota de prensa; excluido. La GA de AI Gateway (3 de nov.) cubre la inferencia de Chat Completions y Anthropic Messages, la observabilidad y la gestión de costes; la analítica de trazas, Tools y la OpenAI Responses API (solo modelos de OpenAI, sin estado) siguen en preview. Gateway funciona en regiones comerciales de AWS, Azure y GCP; Tools solo en regiones comerciales de AWS, excepto Nueva Zelanda y EAU, y ACCOUNTADMIN define qué herramientas expone cada servidor MCP. Los presupuestos de equipo se monitorizan, no son instantáneos, y pueden excederse hasta 6,5 horas (aprox. 1 hora con baja latencia); usa cuotas por usuario para un corte estricto. No afirmes límites de gasto por agente, comprobaciones RBAC en cada llamada a herramienta ni enrutamiento de modelos como funcionalidad general de Gateway (la nota de prensa limita el enrutamiento a CoCo). Nota: el blog resumen del 3 de nov. llama a AI Gateway &#x27;public preview&#x27;; la release note de la documentación del 3 de nov. dice GA, que es lo que seguimos.</p></aside>
+</section>
+
+<section id="keynotes" data-slide-type="cards">
+<header class="slide-header"><p class="kicker"><span>Profundiza</span></p><h2>Tres días, tres audiencias, una historia agéntica</h2></header>
+<div class="slide-body card-grid card-grid--3">
+<article class="card"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 8-4 4 4 4m8-8 4 4-4 4M14 5l-4 14"/></svg><h3>3 nov.: Builders</h3><p>Keynote: Sridhar Ramaswamy y Christian Kleinerman.<br>Charla: Sridhar Ramaswamy con Satya Nadella.</p></article>
+<article class="card"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg><h3>4 nov.: Ventas y Marketing</h3><p>Keynote: Denise Persson, Jonathan Beaulier y Rob Giglio (Canva).<br>Charla: Denise Persson con Colin Fleming (OpenAI).</p></article>
+<article class="card"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9m6 10V5m6 14v-7m4 7H2"/></svg><h3>5 nov.: Oficina del CFO</h3><p>Keynote: Brian Robins, Gordon Lee (DoorDash) y Yasmeen Ahmad (Workday).<br>Charla: Brian Robins con Steffan Tomlinson, CFO de Stripe.</p></article>
+</div>
+<p class="source-line"><b>Empieza por aquí:</b> la keynote inaugural del 3 de noviembre, ya disponible bajo demanda. &nbsp;Fuente: agenda de Expedition Americas y nota de prensa del 5 de octubre de 2026.</p>
+<footer class="slide-footer"><span>Snowflake</span><span>Resumen de Expedition 2026 | Visión general de la solución</span></footer>
+<aside class="notes"><ul><li>Este año Expedition sustituyó a BUILD y abrió el evento más allá de los desarrolladores, a todas las funciones de negocio.</li><li>El primer día concentró los lanzamientos de producto; ahí se anunció casi todo lo que acabamos de repasar.</li><li>Los días dos y tres muestran cómo los equipos de ventas, marketing y finanzas ponen en práctica esas mismas capacidades.</li><li>Si tu equipo solo ve una sesión, que sea la keynote inaugural del 3 de noviembre, ya disponible en grabación.</li></ul><style>.notes-guidance{margin-top:14px;padding:11px 15px;border-left:4px solid #FF9F36;background:color-mix(in srgb,#FF9F36 12%,#FFFFFF);border-radius:6px;font-size:0.92em;line-height:1.45;color:#5B5B5B}.notes-guidance b{color:#000000;letter-spacing:0.06em;text-transform:uppercase}</style><p class="notes-guidance"><b>Orientación</b> &mdash; Los ponentes proceden de la agenda. La nota de prensa de octubre incluye a Yasmeen Ahmad (Workday) como ponente de la keynote del día 3 y también menciona a Andre Rohe (Disney); confirma lo de Rohe antes de citarlo. Revisión posterior al evento (5 de nov.): el día 1 concentró los lanzamientos, pero siguieron llegando novedades menores: las release notes del 4 de nov. añadieron los backups de Iceberg (GA, en la diapositiva de lakehouse), los informes HTML (public preview) y las ejecuciones de agentes en segundo plano en el servidor MCP gestionado (sin fase indicada, por lo que se excluye); un blog del 5 de nov. confirmó que CoCo para Excel y Google Sheets está en public preview. Confirma que las grabaciones de los días 2 y 3 están disponibles bajo demanda antes de prometerlas.</p></aside>
+</section>
+
+<section id="training" data-slide-type="cards">
+<header class="slide-header"><p class="kicker"><span>Fórmate</span></p><h2>Formación Practitioner gratuita para cada rol</h2></header>
+<div class="slide-body card-grid card-grid--3">
+<article class="card"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9m6 10V5m6 14v-7m4 7H2"/></svg><h3>Analistas de datos</h3><p>Consultas, reporting, visualizaciones y análisis con IA.</p></article>
+<article class="card"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6h6v4H5zM13 14h6v4h-6z"/><path d="M8 10v4a2 2 0 0 0 2 2h3"/></svg><h3>Ingenieros de datos</h3><p>Pipelines, carga, transformación y orquestación.</p></article>
+<article class="card"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 7v5c0 5 3.4 8 8 9 4.6-1 8-4 8-9V7l-8-4Z"/><path d="m9 12 2 2 4-5"/></svg><h3>Administradores de plataforma</h3><p>Seguridad, roles, control de acceso, gestión de costes y monitorización.</p></article>
+</div>
+<p class="source-line"><b>Snowflake Practitioner:</b> gratuito, en dos días o a tu ritmo, con instructor o bajo demanda, con 30 días de laboratorios prácticos y CoCo en cada laboratorio. &nbsp;Fuente: nota de prensa del 3 de noviembre de 2026.</p>
+<footer class="slide-footer"><span>Snowflake</span><span>Resumen de Expedition 2026 | Visión general de la solución</span></footer>
+<aside class="notes"><ul><li>Antes de cualquier piloto, tu equipo puede ser productivo en la plataforma sin coste.</li><li>Todos comparten una base teórica común y luego se dividen en laboratorios para analistas, ingenieros o administradores.</li><li>CoCo está integrado en cada laboratorio, así que se aprenden los flujos con agentes de esta presentación desde el primer día.</li><li>Swedbank hizo una primera edición y ha reservado sesiones periódicas hasta 2027.</li><li>A partir de aquí, se puede profundizar en itinerarios por rol hasta la certificación SnowPro.</li></ul><style>.notes-guidance{margin-top:14px;padding:11px 15px;border-left:4px solid #FF9F36;background:color-mix(in srgb,#FF9F36 12%,#FFFFFF);border-radius:6px;font-size:0.92em;line-height:1.45;color:#5B5B5B}.notes-guidance b{color:#000000;letter-spacing:0.06em;text-transform:uppercase}</style><p class="notes-guidance"><b>Orientación</b> &mdash; Disponible ya para clientes y partners de todo el mundo, en sesiones públicas o privadas con instructor o bajo demanda. Las tasas de los exámenes de certificación siguen aplicándose. Inscripción en learn.snowflake.com.</p></aside>
+</section>
+
+<section id="sources" data-slide-type="reference">
+<header class="slide-header"><p class="kicker"><span>Anexo</span></p><h2>Fuentes y lecturas recomendadas</h2></header>
+<div class="slide-body"><ul class="source-list"><li><a href="https://www.snowflake.com/en/blog/expedition-26/">Hub de lanzamientos de Expedition 26</a></li><li><a href="https://www.snowflake.com/en/expedition/ams/agenda/">Agenda de Expedition Americas</a></li><li><a href="https://www.snowflake.com/en/news/press-releases/expedition-2026-coco-cowork/">Nota de prensa: CoCo y CoWork</a></li><li><a href="https://www.snowflake.com/en/news/press-releases/expedition-2026-business-ontology-ai-gateway/">Nota de prensa: AI Gateway y gobierno</a></li><li><a href="https://www.snowflake.com/en/blog/snowflake-coco-cloud-agents-automations/">Blog: cloud agents y automations de CoCo</a></li><li><a href="https://www.snowflake.com/en/blog/autonomous-data-engineering-ai-agents-apps/">Blog: ingeniería de datos, agentes y apps</a></li><li><a href="https://www.snowflake.com/en/blog/ai-agents-governance-ai-security-cost-control/">Blog: gobierno, seguridad de IA y control de costes</a></li><li><a href="https://www.snowflake.com/en/blog/real-time-analytics-snowflake/">Blog: analítica en tiempo real</a></li><li><a href="https://www.snowflake.com/en/blog/snowpipe-streaming-elastic-channels-ga/">Blog: Elastic Channels GA</a></li><li><a href="https://www.snowflake.com/en/blog/engineering/zero-copy-interactive-analytics/">Blog: Zero-Copy Interactive GA</a></li><li><a href="https://docs.snowflake.com/en/release-notes/2026/other/2026-11-03-cortex-ai-gateway-ga">Release note: Cortex AI Gateway GA</a></li><li><a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-ai-gateway/cost-management">Docs: gestión de costes de Cortex AI Gateway</a></li><li><a href="https://docs.snowflake.com/en/user-guide/cortex-code/cortex-code-automations">Docs: automations de CoCo (Preview)</a></li><li><a href="https://docs.snowflake.com/en/release-notes/2026/other/2026-10-12-horizon-context-preview">Release note: Horizon Context</a></li><li><a href="https://www.snowflake.com/en/blog/ai-agents-governed-data-business-context/">Blog: agentes y apps anclados en datos</a></li><li><a href="https://docs.snowflake.com/en/release-notes/2026/other/2026-10-13-cortex-agent-sdk-preview">Release note: Cortex Agent SDK</a></li><li><a href="https://docs.snowflake.com/en/release-notes/2026/other/2026-10-05-cortex-agents-code-execution-tool-ga">Release note: herramienta de ejecución de código GA</a></li><li><a href="https://docs.snowflake.com/en/release-notes/2026/other/2026-10-28-cortex-agents-coding-agent-thinking-effort-stage-mounts">Release note: controles del Coding Agent</a></li><li><a href="https://docs.snowflake.com/en/release-notes/2026/other/2026-10-28-ai-parse-document-agentic-mode-preview">Release note: AI_PARSE_DOCUMENT AGENTIC</a></li><li><a href="https://docs.snowflake.com/en/release-notes/2026/other/2026-11-03-coco-excel-sheets-preview">Release note: CoCo para Excel y Sheets</a></li><li><a href="https://docs.snowflake.com/en/release-notes/new-features">Release notes de Snowflake (actualización de AI_EXTRACT)</a></li><li><a href="https://www.snowflake.com/en/news/press-releases/expedition-2026-autonomous-data-engineering/">Nota de prensa: ingeniería de datos autónoma</a></li><li><a href="https://www.snowflake.com/en/blog/snowflake-coco-microsoft-excel-google-sheets/">Blog: CoCo para Excel y Google Sheets</a></li><li><a href="https://docs.snowflake.com/en/release-notes/2026/other/2026-11-04-iceberg-backups">Release note: backups de Iceberg GA</a></li><li><a href="https://www.snowflake.com/en/news/press-releases/expedition-2026-free-global-training-access/">Nota de prensa: formación Snowflake Practitioner</a></li><li><a href="https://docs.snowflake.com/en/release-notes/2026/other/2026-09-01-snowflake-app-runtime-ga">Release note: Snowflake App Runtime GA</a></li></ul>
+<p class="note-strip note-strip--note">La disponibilidad refleja los anuncios públicos de Snowflake a 5 de noviembre de 2026 y puede variar según la nube, la región y la cuenta.</p></div>
+<footer class="slide-footer"><span>Snowflake</span><span>Resumen de Expedition 2026 | Visión general de la solución</span></footer>
+<aside class="notes"><ul><li>Cada capacidad de esta presentación se apoya en una de estas fuentes públicas de Snowflake.</li><li>El hub de lanzamientos reúne todas las publicaciones de Expedition en un solo lugar.</li><li>La disponibilidad puede variar según la nube y la región, así que consulta la documentación antes de planificar en torno a una funcionalidad.</li><li>Estaré encantado de ayudaros a confirmar qué está habilitado en vuestra cuenta.</li></ul><style>.notes-guidance{margin-top:14px;padding:11px 15px;border-left:4px solid #FF9F36;background:color-mix(in srgb,#FF9F36 12%,#FFFFFF);border-radius:6px;font-size:0.92em;line-height:1.45;color:#5B5B5B}.notes-guidance b{color:#000000;letter-spacing:0.06em;text-transform:uppercase}</style><p class="notes-guidance"><b>Orientación</b> &mdash; Remite aquí a quien quiera más detalle; no repases la lista en directo.</p></aside>
+</section>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@6.0.1/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@6.0.1/dist/plugin/notes.js"></script>
+  <script data-source="scripts/deck.js">
+const deck = new Reveal({
+  hash: true,
+  controls: true,
+  controlsTutorial: false,
+  progress: true,
+  slideNumber: "c/t",
+  width: 1280,
+  height: 720,
+  margin: 0,
+  center: false,
+  transition: "slide",
+  backgroundTransition: "fade",
+  pdfSeparateFragments: false,
+  plugins: [RevealNotes],
+});
+
+deck.initialize();
+
+// Expose the instance for verification. Reveal 6 does not put the deck on the
+// global, so without this a browser check cannot call deck.slide() or read
+// deck.getScale() and has to fall back to parsing the .slides transform.
+window.deck = deck;
+
+// ── Opt-in auto-fit ────────────────────────────────────────────────────────
+// Applies ONLY to <section data-autofit>. Dense prompt/lab slides are reference
+// material the room reads off the screen, so shrinking the body is preferable to
+// splitting the slide; every other slide keeps the measured copy budgets.
+//
+// Two hard rules, both learned the hard way:
+//   1. Never write section.style.display. Forcing display:flex to measure a
+//      hidden slide races Reveal's print pagination and can collapse the whole
+//      PDF to one blank page.
+//   2. Never compute below MIN_PX. Silent shrinking to illegibility is worse
+//      than an honest overflow the sweep will catch.
+(function () {
+  const FRAME = 720;
+  const MIN_PX = 8;
+  const STEP = 0.02;
+
+  function padding(section) {
+    const style = getComputedStyle(section);
+    return parseFloat(style.paddingTop) + parseFloat(style.paddingBottom);
+  }
+
+  function smallestPx(root) {
+    let smallest = Infinity;
+    for (const node of root.querySelectorAll("*")) {
+      const size = parseFloat(getComputedStyle(node).fontSize);
+      if (size > 0 && size < smallest) smallest = size;
+    }
+    return smallest === Infinity ? MIN_PX : smallest;
+  }
+
+  function fitSection(section) {
+    if (!section || !section.hasAttribute("data-autofit")) return;
+    const header = section.querySelector(".slide-header");
+    const body = section.querySelector(".slide-body");
+    if (!body) return;
+
+    body.style.fontSize = "";
+    section.removeAttribute("data-autofit-scale");
+    section.removeAttribute("data-autofit-floored");
+
+    const headerHeight = header ? header.offsetHeight : 0;
+    if (!headerHeight && !body.scrollHeight) return; // not laid out yet
+
+    const base = parseFloat(getComputedStyle(body).fontSize);
+    const available = FRAME - padding(section);
+    const floorRatio = MIN_PX / smallestPx(body);
+    let scale = 1;
+
+    while (headerHeight + body.scrollHeight > available && scale - STEP >= floorRatio) {
+      scale -= STEP;
+      body.style.fontSize = (base * scale).toFixed(2) + "px";
+    }
+
+    if (scale < 1) section.setAttribute("data-autofit-scale", scale.toFixed(2));
+    if (headerHeight + body.scrollHeight > available) {
+      // Hit the floor and still overflows: report it rather than shrink further.
+      section.setAttribute("data-autofit-floored", "true");
+    }
+  }
+
+  function fitAll() {
+    document.querySelectorAll(".slides section[data-autofit]").forEach(fitSection);
+  }
+
+  if (location.search.indexOf("print-pdf") !== -1) {
+    // In print mode every slide is its own laid-out page, so one pass measures all.
+    window.addEventListener("load", fitAll);
+  } else {
+    deck.on("ready", (event) => fitSection(event.currentSlide));
+    deck.on("slidechanged", (event) => fitSection(event.currentSlide));
+  }
+})();
+
+// ── Copy-to-clipboard for .prompt blocks ───────────────────────────────────
+// Workshop attendees run these verbatim. navigator.clipboard is unavailable on
+// some file:// origins, so fall back to a hidden textarea. Neither path performs
+// any network or storage access.
+document.addEventListener("click", (event) => {
+  const button = event.target.closest(".copy-btn");
+  if (!button) return;
+  const block = button.closest(".prompt");
+  const pre = block && block.querySelector("pre");
+  if (!pre) return;
+
+  const done = () => {
+    const original = button.dataset.label || button.textContent;
+    button.dataset.label = original;
+    button.textContent = "Copied";
+    button.dataset.state = "done";
+    setTimeout(() => {
+      button.textContent = original;
+      delete button.dataset.state;
+    }, 1500);
+  };
+
+  const legacy = () => {
+    const area = document.createElement("textarea");
+    area.value = pre.textContent;
+    area.setAttribute("readonly", "");
+    area.style.position = "fixed";
+    area.style.top = "-1000px";
+    document.body.appendChild(area);
+    area.select();
+    let ok = false;
+    try {
+      ok = document.execCommand("copy");
+    } catch (error) {
+      ok = false;
+    }
+    document.body.removeChild(area);
+    if (ok) done();
+    else button.textContent = "Press Ctrl+C";
+  };
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(pre.textContent).then(done, legacy);
+  } else {
+    legacy();
+  }
+});
+
+</script>
+</body>
+</html>
